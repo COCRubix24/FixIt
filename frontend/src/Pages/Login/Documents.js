@@ -3,10 +3,16 @@
 import React, { useState } from "react";
 import "./Documents.css"; // Import your CSS for styling
 import axios from "axios";
+<<<<<<< HEAD
 import FormData from "form-data";
 import { Link } from "react-router-dom";
 
 const JWT = `Bearer ${process.env.JWT}`;
+=======
+import { Link } from "react-router-dom";
+import JWT from "../../SECRET";
+
+>>>>>>> e31340d4962d2d5f2b2241887c843aa0e2bdee7b
 const Documents = () => {
     const [anonymous, setAnonymous] = useState(false);
     const [selectedFiles, setSelectedFiles] = useState();
@@ -83,7 +89,11 @@ const Documents = () => {
                     maxBodyLength: "Infinity",
                     headers: {
                         "Content-Type": `multipart/form-data; boundary=${formData._boundary}`,
+<<<<<<< HEAD
                         Authorization: JWT,
+=======
+                        "Authorization": `Bearer ${JWT}`,
+>>>>>>> e31340d4962d2d5f2b2241887c843aa0e2bdee7b
                     },
                 }
             );
