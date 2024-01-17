@@ -64,7 +64,7 @@ const Help = () => {
                 phone: userr.phone,
                 createdBy: userr._id,
                 pinataIPFS: pinata.IpfsHash,
-                filteredCompanies,
+                // filteredCompanies,
                 // Add phoneNumber, phoneExtension, and countryCode if applicable
             };
 
