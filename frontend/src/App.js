@@ -8,7 +8,10 @@ import About from './Components/landing page/About.jsx'
 import Work from './Components/landing page/Work.jsx'
 import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
 import { UserProvider } from './context/UserContext';
-
+import Header from './Pages/Login/dashboard for buiness/Header.jsx';
+import Sidebar from './Pages/Login/dashboard for buiness/Sidebar.jsx';
+import Main from './Pages/Login/dashboard for buiness/Main.jsx';
+import Dashboard from './Pages/Login/dashboard for buiness/Dashboard.jsx';
 function App() {
   return (
     <UserProvider>
@@ -16,6 +19,7 @@ function App() {
         <Navbar />
         <Routes>
             <Route path="/login" element={<Login />} />
+            <Route path="/dashboard" element={<Dashboard />} />
           </Routes>
           <Home/>
         <About />
@@ -28,4 +32,3 @@ function App() {
 }
 
 export default App;
-
