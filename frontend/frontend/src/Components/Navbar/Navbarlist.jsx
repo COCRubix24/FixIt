@@ -3,10 +3,8 @@ import {
   faFileAlt,
   faHome,
   faInfoCircle,
-  faCogs,
   faQuestionCircle,
-  faVideo,
-  faEnvelope
+  faVideo
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useLocation } from "react-router-dom";
@@ -23,24 +21,29 @@ const Navbarlist = () => {
     //   icon: faHome,
     // },
     {
-      title: "Home",
-      url: "/",
+      title: "DocMaker",
+      url: "/docum",
       cName: "Navlinks",
-      icon: faHome,
+      icon: faInfoCircle,
     },
     {
-      title: "Features",
-      url: "/features",
+      title: "Summarizer",
+      url: "/textsum",
       cName: "Navlinks",
-      icon: faCogs,
+      icon: faVideo,
     },
     {
-      title: "Contact",
-      url: "/contact",
+      title: "Resources",
+      url: "/resource",
       cName: "Navlinks",
-      icon: faEnvelope,
+      icon: faQuestionCircle,
     },
-    
+    {
+      title : "Advocates",
+      url:"/lawyers",
+      cName :"Navlinks",
+      icon: faBalanceScale,
+    }
   ];
   return (
     <>

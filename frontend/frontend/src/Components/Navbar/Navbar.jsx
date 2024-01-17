@@ -2,6 +2,7 @@ import './Navbar.css';
 import Navbarlist from './Navbarlist';
 import { UserContext } from '../../context/UserContext';
 import { useContext } from 'react';
+
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -41,7 +42,7 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="logo-links">
         <h2>
-          <Link to="/" style={{textDecoration:'none', color:'indigo'}}>FIXIT</Link>          
+          <Link to="/" style={{textDecoration:'none', color:'indigo'}}>SmartLegalX</Link>          
         </h2>
         <ul className="navitems">
           <Navbarlist />
@@ -53,7 +54,7 @@ const Navbar = () => {
       </div>
       <div id="google_translate_element"></div>
       <button className="login-button">
-        <Link to="/lawyer">For Advocates</Link>
+        <Link to="/chat">Chat</Link>
       </button>
       {renderAuthButton()}
 

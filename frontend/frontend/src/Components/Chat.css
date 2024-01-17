@@ -1,0 +1,67 @@
+/* Chat.css */
+
+/* Chat.css */
+
+.chat-window {
+    position: absolute;
+    top: 30%;
+    right: 50%;
+    transform: translate(50%, -50%);
+    width: 343px;
+    height: 667px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    overflow: hidden;
+    z-index: 1000;
+    /* display: none; */ /* Remove this line */
+}
+
+.chat-header {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close-icon {
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.chat-body {
+    padding: 20px;
+    height: calc(
+        100% - 130px
+    ); /* Adjust the height based on header and footer size */
+    overflow-y: auto;
+}
+
+.chat-footer {
+    padding: 10px;
+    background-color: #f8f8f8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-footer input {
+    flex: 1;
+    padding: 8px;
+    margin-right: 10px;
+}
+
+.chat-footer button {
+    padding: 8px 15px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.chat-footer button:hover {
+    background-color: #0056b3;
+}
