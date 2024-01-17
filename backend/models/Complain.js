@@ -4,17 +4,17 @@ const ComplainSchema = new mongoose.Schema(
   {
     companyName: {
       type: String,
-      unique: true,
+      // unique: true,
       required: true,
     },
     companyId: {
       type: String,
-      unique: true,
+      // unique: true,
       required: true,
     },
     email: {
       type: String,
-      unique: true,
+      // unique: true,
     },
     name: {
       type: String,

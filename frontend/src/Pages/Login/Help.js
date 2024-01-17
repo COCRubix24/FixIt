@@ -1,13 +1,18 @@
 // Help.js
 
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./Help.css"; // Import your CSS for styling
 import Chat from "../../Components/Chat";
 // import { Link } from "@react-navigation/native";
 // import { Link } from "react-router-dom";
+import { UserContext } from '../../context/UserContext';
+
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 const Help = () => {
+    const { isLoggedIn, userr, checkUserLoggedIn } = useContext(UserContext);
+
     const navigate = useNavigate();
     const location = useLocation();
     const { state } = location;
@@ -39,39 +44,52 @@ const Help = () => {
         setCountryCode(event.target.value);
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async(event) => {
         event.preventDefault();
-
-        // Open a new tab or window for chat based on user preference
-        switch (preferredContactMethod) {
-            case "chat":
-                setShowChat(true);
-                break;
-            case "web":
-                navigate("/case");
-                break;
-            case "phone":
-                navigate("/thanks");
-                break;
-            default:
-                // Handle unexpected method or show an error message
-                console.error(
-                    `Invalid contact method: ${preferredContactMethod}`
-                );
-                break;
-        }
-        const data = {
-            preferredContactMethod,
-            contactLanguage,
-            anonymous,
-            companyName,
-            pinata,
-            filteredCompanies,
-            // Add phoneNumber, phoneExtension, and countryCode if applicable
-        };
-
         try {
+            if (!isLoggedIn) {
+                alert("You are not logged in.");
+                return;
+                // return navigate("/login");
+            }
+
+            // Open a new tab or window for chat based on user preference
+            const data = {
+                preferredContactMethod,
+                preferedLanguage: contactLanguage,
+                anonymous,
+                companyName,
+                email: userr.email,
+                name: userr.name,
+                phone: userr.phone,
+                createdBy: userr._id,
+                pinataIPFS: pinata.IpfsHash,
+                filteredCompanies,
+                // Add phoneNumber, phoneExtension, and countryCode if applicable
+            };
+
             console.log(data);
+            const response = await axios.post('http://localhost:8800/api/complain/', data);
+            console.log(response.data);
+            alert('successful');
+
+            switch (preferredContactMethod) {
+                case "chat":
+                    setShowChat(true);
+                    break;
+                case "web":
+                    navigate("/case");
+                    break;
+                case "phone":
+                    navigate("/thanks");
+                    break;
+                default:
+                    // Handle unexpected method or show an error message
+                    console.error(
+                        `Invalid contact method: ${preferredContactMethod}`
+                    );
+                    break;
+            }
         } catch (error) {
             console.error(error);
         }
