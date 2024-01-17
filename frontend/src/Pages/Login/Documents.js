@@ -2,10 +2,14 @@
 
 import React, { useState } from "react";
 import "./Documents.css"; // Import your CSS for styling
+import axios from "axios";
+import FormData from "form-data";
 import { Link } from "react-router-dom";
+
+const JWT = `Bearer ${process.env.JWT}`;
 const Documents = () => {
     const [anonymous, setAnonymous] = useState(false);
-    const [selectedFiles, setSelectedFiles] = useState([]);
+    const [selectedFiles, setSelectedFiles] = useState();
     const [companyName, setCompanyName] = useState("");
     const [additionalInformation, setAdditionalInformation] = useState("");
     const [filteredCompanies, setFilteredCompanies] = useState([]);
@@ -21,8 +25,7 @@ const Documents = () => {
     };
 
     const handleFileChange = (event) => {
-        const files = event.target.files;
-        setSelectedFiles([...files]);
+        setSelectedFiles(event.target.files[0]);
     };
 
     const handleCompanyNameChange = (event) => {
@@ -56,15 +59,38 @@ const Documents = () => {
         setAdditionalInformation(info);
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log({
-            anonymous,
-            selectedFiles,
-            companyName,
-            additionalInformation,
+        const formData = new FormData();
+
+        formData.append("file", selectedFiles);
+
+        const metadata = JSON.stringify({
+            name: "File name",
         });
-        // Add your logic to submit the form data to the server
+        formData.append("pinataMetadata", metadata);
+
+        const options = JSON.stringify({
+            cidVersion: 0,
+        });
+        formData.append("pinataOptions", options);
+
+        try {
+            const res = await axios.post(
+                "https://api.pinata.cloud/pinning/pinFileToIPFS",
+                formData,
+                {
+                    maxBodyLength: "Infinity",
+                    headers: {
+                        "Content-Type": `multipart/form-data; boundary=${formData._boundary}`,
+                        Authorization: JWT,
+                    },
+                }
+            );
+            console.log(res.data);
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     return (
@@ -127,11 +153,11 @@ const Documents = () => {
                         style={{ width: "425px" }}
                     />
                 </div>
-                <Link to="/help">
-                    <button type="submit" className="submit-button">
-                        Submit
-                    </button>
-                </Link>
+                {/* <Link to="/help"> */}
+                <button type="submit" className="submit-button">
+                    Submit
+                </button>
+                {/* </Link> */}
             </form>
         </div>
     );
