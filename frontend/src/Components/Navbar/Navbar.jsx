@@ -54,7 +54,7 @@ const Navbar = () => {
       </div>
       <div id="google_translate_element"></div>
       <button className="login-button">
-        <Link to="/lawyer">For Advocates</Link>
+        <Link to="/chat">Chat</Link>
       </button>
       {renderAuthButton()}
 
