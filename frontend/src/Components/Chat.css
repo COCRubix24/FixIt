@@ -1,7 +1,5 @@
 /* Chat.css */
 
-/* Chat.css */
-
 .chat-window {
     position: absolute;
     top: 30%;
@@ -9,7 +7,7 @@
     transform: translate(50%, -50%);
     width: 343px;
     height: 667px;
-    background-color: #fff;
+    background-color: white; /* Replace with orange color code */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
     overflow: hidden;
@@ -18,7 +16,7 @@
 }
 
 .chat-header {
-    background-color: #007bff;
+    background-color: #fd9d17; /* Keep the header color if you want */
     color: #fff;
     padding: 10px;
     display: flex;
@@ -55,7 +53,7 @@
 
 .chat-footer button {
     padding: 8px 15px;
-    background-color: #007bff;
+    background-color: #fd9d17; /* Replace with orange color code */
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -63,5 +61,5 @@
 }
 
 .chat-footer button:hover {
-    background-color: #0056b3;
+    background-color: #d38300; /* Adjust the hover color based on your preference */
 }

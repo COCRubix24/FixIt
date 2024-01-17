@@ -4,6 +4,7 @@ import BannerImage from "../../assets/support-303213_1280.png";
 import './all.css'
 
 import { FiArrowRight } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -22,9 +23,11 @@ const Home = () => {
           Where your concerns meet swift resolutions — a platform 
           dedicated to transforming your feedback into actionable solutions, ensuring your voice shapes a better consumer experience.
           </p>
+          <Link to ='/docs'>
           <button className="secondary-button">
-          Get started <FiArrowRight />{" "}
-          </button>
+          File a Complaint<FiArrowRight />{" "}
+            </button>
+            </Link>
         </div>
         <div className="home-image-section">
           <img src={BannerImage} alt="" />

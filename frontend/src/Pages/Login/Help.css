@@ -1,0 +1,66 @@
+/* Help.css */
+
+.page-container {
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.help-container {
+    background-color: #fff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.help-content {
+    padding: 20px;
+}
+
+h2 {
+    color: #fd9d17;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+/* .form-group{
+       display: ;
+} */
+.form-label {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.form-select,
+.form-radio {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+/* Arrange radio buttons side by side */
+.form-radio-label {
+    display: flex;
+    align-items: center;
+}
+
+.form-radio-input {
+    margin-right: 8px;
+}
+
+.help-form-button {
+    padding: 12px;
+    background-color: #fd9d17;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.help-form-button:hover {
+    background-color: #ffb848;
+}

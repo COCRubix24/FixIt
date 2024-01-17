@@ -1,0 +1,91 @@
+/* Documents.css */
+
+.documents-container {
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.complaint-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.autocomplete-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-height: 120px;
+    overflow-y: auto;
+    width: calc(100% - 20px);
+}
+
+.autocomplete-list li {
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.autocomplete-list li:hover {
+    background-color: #f0f0f0;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.checkbox-label input {
+    margin-right: 8px;
+}
+
+.submit-button {
+    background-color: #e48f0f;
+    color: #fff;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+    background-color: #b3710d;
+}
+
+/* Documents.css */
+
+.recommendation {
+    color: #e48f0f; /* Use the desired color */
+    font-size: 14px;
+    margin-top: 5px;
+}
