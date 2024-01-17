@@ -8,7 +8,7 @@ import authRoute from "./routes/auth.js";
 import usersRoute from "./routes/users.js";
 import lawyerRoute from "./routes/Lawyer.js";
 import complainRouter from "./routes/complain.js";
-
+import companyRouter from "./routes/company.js";
 import contactRoute from "./routes/contact.js";
 
 const app = express();
@@ -54,6 +54,7 @@ app.use("/api/auth", authRoute);
 app.use("/api/users", usersRoute);
 app.use("/api/lawyer", lawyerRoute);
 app.use("/api/complain", complainRouter);
+app.use("/api/company", companyRouter);
 
 app.use("/api/contact", contactRoute);
 
