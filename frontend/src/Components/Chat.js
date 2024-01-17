@@ -4,6 +4,17 @@ import React from "react";
 import "./Chat.css"; // Import your CSS for styling
 
 const Chat = ({ username, onClose }) => {
+    const predefinedOptions = [
+        "Product Information",
+        "Order Status",
+        "Technical Support",
+    ];
+
+    const handleOptionClick = (option) => {
+        // Handle the selected option, you can perform actions based on the chosen option
+        console.log(`Selected option: ${option}`);
+    };
+
     return (
         <div className="chat-window">
             <div className="chat-header">
@@ -13,8 +24,17 @@ const Chat = ({ username, onClose }) => {
                 <h3>Welcome, {username}!</h3>
             </div>
             <div className="chat-body">
-                {/* Add your chat content here */}
-                <p>This is the chat window content.</p>
+                <p>How can I assist you today?</p>
+                <p>Choose one of the options below:</p>
+                <ul>
+                    {predefinedOptions.map((option, index) => (
+                        <li key={index}>
+                            <button onClick={() => handleOptionClick(option)}>
+                                {option}
+                            </button>
+                        </li>
+                    ))}
+                </ul>
             </div>
             <div className="chat-footer">
                 {/* Add your chat input and send button here */}
