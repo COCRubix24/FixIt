@@ -1,0 +1,20 @@
+/* CaseDeets.css */
+
+.case-details-container {
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.details-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.detail {
+    margin-bottom: 10px;
+}
+
+/* Add any additional styling based on your design requirements */

@@ -3,8 +3,11 @@
 import React, { useState } from "react";
 import "./Help.css"; // Import your CSS for styling
 import Chat from "../../Components/Chat";
-
+// import { Link } from "@react-navigation/native";
+// import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const Help = () => {
+    const navigate = useNavigate();
     const [contactLanguage, setContactLanguage] = useState("");
     const [preferredContactMethod, setPreferredContactMethod] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
@@ -36,10 +39,22 @@ const Help = () => {
         event.preventDefault();
 
         // Open a new tab or window for chat based on user preference
-        if (preferredContactMethod === "chat") {
-            setShowChat(true);
-        } else {
-            // Handle other contact methods
+        switch (preferredContactMethod) {
+            case "chat":
+                setShowChat(true);
+                break;
+            case "web":
+                navigate("/case");
+                break;
+            case "phone":
+                navigate("/thanks");
+                break;
+            default:
+                // Handle unexpected method or show an error message
+                console.error(
+                    `Invalid contact method: ${preferredContactMethod}`
+                );
+                break;
         }
     };
 
