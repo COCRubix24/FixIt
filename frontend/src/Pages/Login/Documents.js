@@ -1,29 +1,24 @@
-// Documents.js
-
 import React, { useState } from "react";
 import "./Documents.css"; // Import your CSS for styling
 import axios from "axios";
-<<<<<<< HEAD
-import FormData from "form-data";
-import { Link } from "react-router-dom";
-
-const JWT = `Bearer ${process.env.JWT}`;
-=======
 import { Link } from "react-router-dom";
 import JWT from "../../SECRET";
+import Help from "./Help";
+import { useNavigate } from "react-router-dom";
 
->>>>>>> e31340d4962d2d5f2b2241887c843aa0e2bdee7b
 const Documents = () => {
     const [anonymous, setAnonymous] = useState(false);
     const [selectedFiles, setSelectedFiles] = useState();
     const [companyName, setCompanyName] = useState("");
     const [additionalInformation, setAdditionalInformation] = useState("");
     const [filteredCompanies, setFilteredCompanies] = useState([]);
+    const [pinata, setPinata] = useState("");
     const [companies] = useState([
         "Bata",
         "BananaChips Inc.",
         // Add more company names here
     ]);
+    const navigate = useNavigate();
     const [recommendation, setRecommendation] = useState("");
 
     const handleAnonymousChange = () => {
@@ -89,15 +84,21 @@ const Documents = () => {
                     maxBodyLength: "Infinity",
                     headers: {
                         "Content-Type": `multipart/form-data; boundary=${formData._boundary}`,
-<<<<<<< HEAD
-                        Authorization: JWT,
-=======
-                        "Authorization": `Bearer ${JWT}`,
->>>>>>> e31340d4962d2d5f2b2241887c843aa0e2bdee7b
+                        Authorization: `Bearer ${JWT}`,
                     },
                 }
             );
-            console.log(res.data);
+            setPinata(res.data);
+            // console.log(res.data);
+            console.log("pinata is", pinata);
+            navigate("/help", {
+                state: {
+                    anonymous,
+                    companyName,
+                    pinata: res.data,
+                    companies,
+                },
+            });
         } catch (error) {
             console.log(error);
         }
@@ -162,7 +163,9 @@ const Documents = () => {
                         onChange={handleAdditionalInformationChange}
                         style={{ width: "425px" }}
                     />
+                    {/* <Help /> */}
                 </div>
+
                 {/* <Link to="/help"> */}
                 <button type="submit" className="submit-button">
                     Submit

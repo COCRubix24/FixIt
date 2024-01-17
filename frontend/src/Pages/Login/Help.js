@@ -6,8 +6,12 @@ import Chat from "../../Components/Chat";
 // import { Link } from "@react-navigation/native";
 // import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 const Help = () => {
     const navigate = useNavigate();
+    const location = useLocation();
+    const { state } = location;
+    const { anonymous, companyName, pinata, filteredCompanies } = state || {};
     const [contactLanguage, setContactLanguage] = useState("");
     const [preferredContactMethod, setPreferredContactMethod] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
@@ -55,6 +59,21 @@ const Help = () => {
                     `Invalid contact method: ${preferredContactMethod}`
                 );
                 break;
+        }
+        const data = {
+            preferredContactMethod,
+            contactLanguage,
+            anonymous,
+            companyName,
+            pinata,
+            filteredCompanies,
+            // Add phoneNumber, phoneExtension, and countryCode if applicable
+        };
+
+        try {
+            console.log(data);
+        } catch (error) {
+            console.error(error);
         }
     };
 
