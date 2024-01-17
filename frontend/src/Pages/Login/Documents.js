@@ -1,19 +1,24 @@
-// Documents.js
-
 import React, { useState } from "react";
 import "./Documents.css"; // Import your CSS for styling
+import axios from "axios";
 import { Link } from "react-router-dom";
+import JWT from "../../SECRET";
+import Help from "./Help";
+import { useNavigate } from "react-router-dom";
+
 const Documents = () => {
     const [anonymous, setAnonymous] = useState(false);
-    const [selectedFiles, setSelectedFiles] = useState([]);
+    const [selectedFiles, setSelectedFiles] = useState();
     const [companyName, setCompanyName] = useState("");
     const [additionalInformation, setAdditionalInformation] = useState("");
     const [filteredCompanies, setFilteredCompanies] = useState([]);
+    const [pinata, setPinata] = useState("");
     const [companies] = useState([
         "Bata",
         "BananaChips Inc.",
         // Add more company names here
     ]);
+    const navigate = useNavigate();
     const [recommendation, setRecommendation] = useState("");
 
     const handleAnonymousChange = () => {
@@ -21,8 +26,7 @@ const Documents = () => {
     };
 
     const handleFileChange = (event) => {
-        const files = event.target.files;
-        setSelectedFiles([...files]);
+        setSelectedFiles(event.target.files[0]);
     };
 
     const handleCompanyNameChange = (event) => {
@@ -56,15 +60,48 @@ const Documents = () => {
         setAdditionalInformation(info);
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log({
-            anonymous,
-            selectedFiles,
-            companyName,
-            additionalInformation,
+        const formData = new FormData();
+
+        formData.append("file", selectedFiles);
+
+        const metadata = JSON.stringify({
+            name: "File name",
         });
-        // Add your logic to submit the form data to the server
+        formData.append("pinataMetadata", metadata);
+
+        const options = JSON.stringify({
+            cidVersion: 0,
+        });
+        formData.append("pinataOptions", options);
+
+        try {
+            const res = await axios.post(
+                "https://api.pinata.cloud/pinning/pinFileToIPFS",
+                formData,
+                {
+                    maxBodyLength: "Infinity",
+                    headers: {
+                        "Content-Type": `multipart/form-data; boundary=${formData._boundary}`,
+                        Authorization: `Bearer ${JWT}`,
+                    },
+                }
+            );
+            setPinata(res.data);
+            // console.log(res.data);
+            console.log("pinata is", pinata);
+            navigate("/help", {
+                state: {
+                    anonymous,
+                    companyName,
+                    pinata: res.data,
+                    companies,
+                },
+            });
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     return (
@@ -126,12 +163,14 @@ const Documents = () => {
                         onChange={handleAdditionalInformationChange}
                         style={{ width: "425px" }}
                     />
+                    {/* <Help /> */}
                 </div>
-                <Link to="/help">
-                    <button type="submit" className="submit-button">
-                        Submit
-                    </button>
-                </Link>
+
+                {/* <Link to="/help"> */}
+                <button type="submit" className="submit-button">
+                    Submit
+                </button>
+                {/* </Link> */}
             </form>
         </div>
     );

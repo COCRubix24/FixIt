@@ -4,18 +4,36 @@ import { StatusCodes } from "http-status-codes";
 
 export const createComplain = async (req, res) => {
   console.log(req.body);
-  const { companyName, email, name, phone, token, isAnonymous } = req.body;
-  if (!companyName || !token || isAnonymous) {
+  const {
+    companyName,
+    email,
+    name,
+    phone,
+    id,
+    isAnonymous,
+    preferedLanguage,
+    preferedContactMethod,
+    pinataIPFS,
+  } = req.body;
+  if (
+    !companyName ||
+    !id ||
+    isAnonymous ||
+    !preferedLanguage ||
+    !preferedContactMethod
+  ) {
     throw new Error("Invalid credentials");
   }
-  const documents = req.files;
   try {
     if (isAnonymous === true) {
+      pinataIPFS = "https://ipfs.io/ipfs/" + pinataIPFS;
       const newComplain = {
         companyName: companyName,
         companyId: "123",
-        createdBy: token.id,
-        documents: documents, // cloudinary ayega
+        createdBy: id,
+        pinataIPFS: pinataIPFS,
+        preferedLanguage: preferedLanguage,
+        preferedContactMethod: preferedContactMethod,
       };
       const complain = await Complain.create(newComplain);
       res.status(StatusCodes.CREATED).json({ complain });
@@ -29,8 +47,10 @@ export const createComplain = async (req, res) => {
         email: email,
         name: name,
         phone: phone,
-        createdBy: userId,
-        documents: documents, // cloudinary ayega
+        createdBy: id,
+        pinataIPFS: pinataIPFS,
+        preferedLanguage: preferedLanguage,
+        preferedContactMethod: preferedContactMethod,
       };
       const complain = await Complain.create(newComplain);
       res.status(StatusCodes.CREATED).json({ complain });
