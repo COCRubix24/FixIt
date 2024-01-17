@@ -8,7 +8,10 @@ import Footer from "./Components/Footer/Footer.js";
 import Documents from "./Pages/Login/Documents.js";
 import LP from "./Pages/Login/LP.js";
 import Help from "./Pages/Login/Help.js";
-
+import Header from "./Pages/Login/dashboard for buiness/Header.jsx";
+import Sidebar from "./Pages/Login/dashboard for buiness/Sidebar.jsx";
+import Main from "./Pages/Login/dashboard for buiness/Main.jsx";
+import Dashboard from "./Pages/Login/dashboard for buiness/Dashboard.jsx";
 function App() {
     return (
         <UserProvider>
@@ -16,6 +19,7 @@ function App() {
                 <Navbar />
                 <Routes>
                     <Route path="/login" element={<Login />} />
+                    <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/" element={<LP />} />
                     <Route path="/docs" element={<Documents />} />
                     <Route path="/help" element={<Help />} />

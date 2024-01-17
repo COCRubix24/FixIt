@@ -15,7 +15,7 @@ const Home = () => {
           <img src={BannerBackground} alt="" />
         </div>
         <div className="home-text-section">
-          <h1 className="primary-heading">
+          <h1 className="primary-heading" >
             Your Voice,</h1>
             <h1 className="primary-heading"> Our Solution
           </h1>

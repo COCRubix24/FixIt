@@ -5,17 +5,15 @@
     padding: 30px 20px;
     /* background-color: rgba(0, 0, 0, 0.9);
      */
-    background: linear-gradient(180deg,
-            #eaeeff 0%,
-            rgba(234, 238, 255, 0.96875) 80%,
-            rgba(234, 238, 255, 0) 100%);
+    background-color: #514f4f;
+            
     /* box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2); */
-    height: 120px;
+    height: 50px;
 }
 
 .logo-links {
     text-decoration: none;
-    color: #1e2340;
+    color: white;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -40,7 +38,7 @@
 
 .Navlinks {
     text-decoration: none;
-    color: #1e2340;
+    color: white;
 }
 
 .Navlinks svg {
@@ -49,7 +47,7 @@
 
 .active {
     font-weight: 700;
-    background-color: indigo;
+    background-color: #7E7E7E;
     /* font-size: 25px; */
     padding: 5px 8px;
     border-radius: 20px;
@@ -116,5 +114,70 @@ h2 {
 
     .login-button {
         margin-top: 20px;
+    }
+}
+/* ... Your existing CSS ... */
+
+.search-container {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 25px;
+    padding: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-left: 80px;
+    margin-top:0px;
+    /* Adjust the margin to move it towards the right */
+}
+
+.search-icon {
+    margin-right: 10px;
+    color: #777; /* Adjust the color as needed */
+}
+
+.search-input {
+    border: none;
+    outline: none;
+    padding: 12px;
+    border-radius: 25px;
+    width: 250px; /* Adjust the width as needed */
+    font-size: 16px; /* Adjust the font size as needed */
+}
+
+.chat-login-container {
+    display: flex;
+    align-items: center;
+}
+
+.chat-login-container button {
+    background-color: rgb(100, 66, 2);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    font-size: 15px;
+    margin-left: 20px; /* Adjust the margin as needed */
+}
+
+.chat-login-container button a {
+    color: white;
+    text-decoration: none;
+}
+
+/* ... Your existing CSS ... */
+
+/* Mobile styles */
+@media screen and (max-width: 768px) {
+    /* ... Your existing mobile styles ... */
+
+    .chat-login-container {
+        width: 100%;
+        justify-content: flex-end;
+        margin-top: 20px; /* Adjust the margin as needed */
+    }
+
+    .chat-login-container button {
+        margin-left: 0;
     }
 }
