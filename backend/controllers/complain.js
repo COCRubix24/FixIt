@@ -9,7 +9,7 @@ export const createComplain = async (req, res) => {
     email,
     name,
     phone,
-    id,
+    createdBy,
     isAnonymous,
     preferedLanguage,
     preferedContactMethod,
@@ -17,7 +17,7 @@ export const createComplain = async (req, res) => {
   } = req.body;
   if (
     !companyName ||
-    !id ||
+    !createdBy ||
     isAnonymous ||
     !preferedLanguage ||
     !preferedContactMethod
@@ -30,13 +30,13 @@ export const createComplain = async (req, res) => {
       const newComplain = {
         companyName: companyName,
         companyId: "123",
-        createdBy: id,
+        createdBy: createdBy,
         pinataIPFS: pinataIPFS,
         preferedLanguage: preferedLanguage,
         preferedContactMethod: preferedContactMethod,
       };
       const complain = await Complain.create(newComplain);
-      res.status(StatusCodes.CREATED).json({ complain });
+      res.status(201).json({ complain });
     } else {
       if (!email || !name || !phone) {
         throw new Error("Invalid credentials");
@@ -47,13 +47,15 @@ export const createComplain = async (req, res) => {
         email: email,
         name: name,
         phone: phone,
-        createdBy: id,
+        createdBy: createdBy,
         pinataIPFS: pinataIPFS,
         preferedLanguage: preferedLanguage,
         preferedContactMethod: preferedContactMethod,
       };
       const complain = await Complain.create(newComplain);
-      res.status(StatusCodes.CREATED).json({ complain });
+      res.status(201).json({ complain });
     }
-  } catch (error) {}
+  } catch (error) {
+    console.error(error);
+  }
 };

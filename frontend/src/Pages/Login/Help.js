@@ -55,9 +55,9 @@ const Help = () => {
 
             // Open a new tab or window for chat based on user preference
             const data = {
-                preferredContactMethod,
+                preferedContactMethod : preferredContactMethod,
                 preferedLanguage: contactLanguage,
-                anonymous,
+                isAnonymous : anonymous,
                 companyName,
                 email: userr.email,
                 name: userr.name,
@@ -69,7 +69,7 @@ const Help = () => {
             };
 
             console.log(data);
-            const response = await axios.post('http://localhost:8800/api/complain/', data);
+            const response = await axios.post('http://localhost:8800/api/complain/createComplain', data);
             console.log(response.data);
             alert('successful');
 

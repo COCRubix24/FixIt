@@ -32,12 +32,12 @@ const ComplainSchema = new mongoose.Schema(
     },
     preferedLanguage: {
       type: String,
-      enum: ["English", "Spanish"],
+      // enum: ["English", "Spanish"],
       required: true,
     },
     preferedContactMethod: {
       type: String,
-      enum: ["Web", "Phone", "Chat"],
+      enum: ["web", "phone", "chat"],
       required: true,
     },
   },
