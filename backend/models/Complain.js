@@ -27,8 +27,18 @@ const ComplainSchema = new mongoose.Schema(
       ref: "User",
       required: [true, "Please provide user"],
     },
-    documents: {
+    pinataIPFS: {
       type: String,
+    },
+    preferedLanguage: {
+      type: String,
+      enum: ["English", "Spanish"],
+      required: true,
+    },
+    preferedContactMethod: {
+      type: String,
+      enum: ["Web", "Phone", "Chat"],
+      required: true,
     },
   },
   { timestamps: true }
