@@ -43,7 +43,7 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="logo-links">
         <h2>
-          <Link to="/" style={{ textDecoration: 'none', color: 'white' }}>
+          <Link to="/" style={{ textDecoration: 'none', color: 'orange' }}>
             FIXIT
           </Link>
         </h2>
@@ -55,10 +55,11 @@ const Navbar = () => {
             </a>
           </li>
           {/* Add search input with icon */}
-          <li className="
-          ">
+          <li className="hehehe">
+            
+            <input  type="text" placeholder="Search...." className="search-input" />
+            
             <FontAwesomeIcon icon={faSearch} className="search-icon" />
-            <input  type="text" placeholder="Search" className="search-input" />
           </li>
         </ul>
       </div>

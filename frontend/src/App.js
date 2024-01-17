@@ -14,6 +14,10 @@ import Main from "./Pages/Login/dashboard for buiness/Main.jsx";
 import Dashboard from "./Pages/Login/dashboard for buiness/Dashboard.jsx";
 import DisplayCaseDetailsPage from "./Pages/Login/DisplayCaseDetailsPage.js";
 import Thanks from "./Pages/Login/Thanks.js";
+import Sidebaruser from "./Pages/Login/dashboard for user/Sidebaruser.jsx";
+import Mainuser from "./Pages/Login/dashboard for user/Mainuser.jsx";
+import Headeruser from "./Pages/Login/dashboard for user/Headeruser.jsx";
+import Dashboarduser from "./Pages/Login/dashboard for user/Dashboarduser.jsx";
 function App() {
     return (
         <UserProvider>
@@ -21,12 +25,13 @@ function App() {
                 <Navbar />
                 <Routes>
                     <Route path="/login" element={<Login />} />
-                    <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/dashboardbusiness" element={<Dashboard />} />
                     <Route path="/" element={<LP />} />
                     <Route path="/docs" element={<Documents />} />
                     <Route path="/help" element={<Help />} />
                     <Route path="/case" element={<DisplayCaseDetailsPage />} />
                     <Route path="/thanks" element={<Thanks />} />
+                    <Route path="/dashboarduser" element={<Dashboarduser />} />
                 </Routes>
                 <Footer />
             </BrowserRouter>

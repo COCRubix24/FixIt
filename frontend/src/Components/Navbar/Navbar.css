@@ -65,7 +65,7 @@
 .login-button {
     font-size: 20px;
     font-weight: 700;
-    background-color: indigo;
+    background-color: rgb(146, 89, 10);
     padding: 10px 25px;
     border-radius: 30px;
 }
@@ -116,68 +116,43 @@ h2 {
         margin-top: 20px;
     }
 }
-/* ... Your existing CSS ... */
 
-.search-container {
+.hehehe {
     display: flex;
     align-items: center;
-    background-color: #fff;
-    border-radius: 25px;
-    padding: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin-left: 80px;
-    margin-top:0px;
-    /* Adjust the margin to move it towards the right */
-}
-
-.search-icon {
-    margin-right: 10px;
-    color: #777; /* Adjust the color as needed */
-}
-
-.search-input {
+    position: relative;
+    bottom:15px;
+    left:100px;
+    width:450px;
+  }
+  
+  .search-input {
     border: none;
     outline: none;
-    padding: 12px;
+    padding: 10px;
     border-radius: 25px;
-    width: 250px; /* Adjust the width as needed */
-    font-size: 16px; /* Adjust the font size as needed */
-}
+    font-size: 14px;
+    
+    
+  }
+  
+  .search-icon {
+    margin-left: 10px;
+    color: #eeeeee;
+  }
+  
 
 .chat-login-container {
-    display: flex;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end; /* Adjust alignment as needed */
+  /* margin-top: 20px;  */
+  position: relative;
+  bottom:25px;
 }
 
-.chat-login-container button {
-    background-color: rgb(100, 66, 2);
-    color: white;
-    padding: 12px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    border: none;
-    font-size: 15px;
-    margin-left: 20px; /* Adjust the margin as needed */
-}
-
-.chat-login-container button a {
-    color: white;
-    text-decoration: none;
-}
-
-/* ... Your existing CSS ... */
-
-/* Mobile styles */
-@media screen and (max-width: 768px) {
-    /* ... Your existing mobile styles ... */
-
-    .chat-login-container {
-        width: 100%;
-        justify-content: flex-end;
-        margin-top: 20px; /* Adjust the margin as needed */
-    }
-
-    .chat-login-container button {
-        margin-left: 0;
-    }
+.login-button {
+  font-size: 19px; /* Adjust font size as needed */
+  padding: 8px 15px; /* Adjust padding as needed */
+  margin-top: 10px; /* Adjust margin as needed */
 }
