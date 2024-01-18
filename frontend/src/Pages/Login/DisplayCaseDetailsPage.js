@@ -3,15 +3,19 @@
 import React from "react";
 import CaseDeets from "../../Components/CaseDeets";
 import "./DisplayCaseDetailsPage.css"; // Import your CSS for styling
+import { useLocation } from "react-router-dom";
 
 const DisplayCaseDetailsPage = () => {
+    const location = useLocation();
+    const { state } = location;
+
     // Assuming you have case details from the backend or some state
     const caseDetails = {
-        caseID: "123456",
-        createdTime: "2022-01-01 10:00 AM",
-        status: "Work in Progress",
-        openedByEmail: "user@example.com",
-        category: "ML Categorized Category",
+        caseID: state._id || "65a8a3e4256267827a86d21f",
+        createdTime: state.createdAt || "2024-01-18T04:07:00.616Z",
+        status: state.status || "Submitted complain",
+        openedByEmail: state.email || "altaf7@gmail.com",
+        category: state.department || "Product Quality",
     };
 
     return (

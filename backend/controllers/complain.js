@@ -3,6 +3,8 @@ import Complain from "../models/Complain.js";
 import { StatusCodes } from "http-status-codes";
 import Company from "../models/Company.js";
 
+import axios from "axios";
+
 export const createComplain = async (req, res) => {
   console.log(req.body);
   const {
@@ -12,10 +14,12 @@ export const createComplain = async (req, res) => {
     phone,
     createdBy,
     isAnonymous,
+    description,
     preferedLanguage,
     preferedContactMethod,
     pinataIPFS,
   } = req.body;
+
   if (
     !companyName ||
     !createdBy ||
@@ -25,6 +29,7 @@ export const createComplain = async (req, res) => {
   ) {
     throw new Error("Invalid credentials");
   }
+
   try {
     const company = await Company.findOne({
       companyName: { $regex: new RegExp(companyName, "i") },
@@ -33,38 +38,61 @@ export const createComplain = async (req, res) => {
     if (!company) {
       throw new Error("Invalid company Name");
     }
+
+    let complainData = null;
+
     if (isAnonymous === true) {
-      pinataIPFS = "https://ipfs.io/ipfs/" + pinataIPFS;
-      const newComplain = {
+      // pinataIPFS = "https://ipfs.io/ipfs/" + pinataIPFS;
+      complainData = {
         companyName: companyName,
         companyId: company._id,
         createdBy: createdBy,
+        description: description,
         pinataIPFS: pinataIPFS,
         preferedLanguage: preferedLanguage,
         preferedContactMethod: preferedContactMethod,
       };
-      const complain = await Complain.create(newComplain);
-      res.status(201).json({ complain });
     } else {
       if (!email || !name || !phone) {
         throw new Error("Invalid credentials");
       }
-      const newComplain = {
+      complainData = {
         companyName: companyName,
         companyId: company._id,
         email: email,
         name: name,
         phone: phone,
         createdBy: createdBy,
+        description: description,
         pinataIPFS: pinataIPFS,
         preferedLanguage: preferedLanguage,
         preferedContactMethod: preferedContactMethod,
       };
-      const complain = await Complain.create(newComplain);
-      res.status(201).json({ complain });
     }
+
+    const flaskApiResponse = await axios.post('http://localhost:5000/classifyDept/', {
+      input: description,  // Provide the appropriate input data
+      depts: company.departments,  // Provide the appropriate departments data
+      pinataIPFS: pinataIPFS,  // Assuming you want to include pinataIPFS in the request
+    });
+    console.log(flaskApiResponse.data)
+
+    // Extract relevant data from the Flask API response
+    const flaskApiData = flaskApiResponse.data.result;
+
+    // Merge the data from Flask API with the complainData
+    Object.assign(complainData, {
+      department: flaskApiData.deptSelected,
+      keywords: flaskApiData.keywords,
+    });
+
+    // Create a Complain record
+    const complain = await Complain.create(complainData);
+
+    res.status(201).json({ complain });
   } catch (error) {
     console.error(error);
+    res.status(500).json({ error: error.message });
   }
 };
 

@@ -16,7 +16,7 @@ const Help = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const { state } = location;
-    const { anonymous, companyName, pinata, filteredCompanies } = state || {};
+    const { anonymous, companyName, pinata, filteredCompanies, additionalInformation } = state || {};
     const [contactLanguage, setContactLanguage] = useState("");
     const [preferredContactMethod, setPreferredContactMethod] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
@@ -64,7 +64,7 @@ const Help = () => {
                 phone: userr.phone,
                 createdBy: userr._id,
                 pinataIPFS: pinata.IpfsHash,
-                // filteredCompanies,
+                description: additionalInformation,
                 // Add phoneNumber, phoneExtension, and countryCode if applicable
             };
 
@@ -81,7 +81,9 @@ const Help = () => {
                     setShowChat(true);
                     break;
                 case "web":
-                    navigate("/case");
+                    navigate("/case", {
+                        state: response.data,
+                    });
                     break;
                 case "phone":
                     navigate("/thanks");
