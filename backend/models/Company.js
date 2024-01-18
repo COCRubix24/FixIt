@@ -30,6 +30,10 @@ const CompanySchema = new mongoose.Schema(
     { timestamps: true }
 );
 
+CompanySchema.pre("save", () => {
+  this.companyName = this.companyName.toLowerCase();
+});
+
 CompanySchema.pre("find", () => {
     if (this.isPremium) {
         let currentDate = new Date().toISOString();

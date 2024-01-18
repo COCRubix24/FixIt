@@ -1,6 +1,7 @@
 import cloudinary from "../config/cloudinary.js"; // Import the Cloudinary configuration
 import Complain from "../models/Complain.js";
 import { StatusCodes } from "http-status-codes";
+import Company from "../models/Company.js";
 
 export const createComplain = async (req, res) => {
   console.log(req.body);
@@ -25,11 +26,18 @@ export const createComplain = async (req, res) => {
     throw new Error("Invalid credentials");
   }
   try {
+    const company = await Company.findOne({
+      companyName: { $regex: new RegExp(companyName, "i") },
+    });
+
+    if (!company) {
+      throw new Error("Invalid company Name");
+    }
     if (isAnonymous === true) {
       pinataIPFS = "https://ipfs.io/ipfs/" + pinataIPFS;
       const newComplain = {
         companyName: companyName,
-        companyId: "123",
+        companyId: company._id,
         createdBy: createdBy,
         pinataIPFS: pinataIPFS,
         preferedLanguage: preferedLanguage,
@@ -43,7 +51,7 @@ export const createComplain = async (req, res) => {
       }
       const newComplain = {
         companyName: companyName,
-        companyId: "123",
+        companyId: company._id,
         email: email,
         name: name,
         phone: phone,
