@@ -4,6 +4,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import { createError } from "../utils/error.js";
+import Complain from "../models/Complain.js";
 
 export const registerCompany = async (req, res, next) => {
   try {
@@ -31,6 +32,7 @@ export const registerCompany = async (req, res, next) => {
 };
 
 export const loginCompany = async (req, res, next) => {
+  console.log(req.body);
   try {
     const user = await Company.findOne({ email: req.body.email });
     if (!user) return next(createError(404, "Company not found"));
@@ -65,4 +67,11 @@ export const loginCompany = async (req, res, next) => {
   } catch (err) {
     next(err);
   }
+};
+
+export const getCompanyStatus = async (req, res) => {
+  const { email } = req.body;
+  try {
+    const company = await Company.find({ email: email });
+  } catch (error) {}
 };
