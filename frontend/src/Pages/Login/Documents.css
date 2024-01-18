@@ -1,5 +1,15 @@
 /* Documents.css */
-
+.help-whole {
+    margin: 0;
+    padding: 0;
+    /* background-image: url(blob.gif); */
+    background-size: cover;
+    background-position: left center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    overflow: hidden;
+    /* opacity: 0.5; */
+}
 .documents-container {
     max-width: 500px;
     margin: auto;
@@ -7,6 +17,7 @@
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
+    opacity: 1;
 }
 
 .complaint-form {
@@ -15,7 +26,7 @@
 }
 
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 0px;
 }
 
 label {

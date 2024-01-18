@@ -1,0 +1,52 @@
+/* Customize your timeline styles here */
+
+.vertical-timeline-element-content {
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Increased shadow for each timeline element */
+}
+
+.submitted .vertical-timeline-element-content {
+    /* background: rgb(33, 150, 243); */
+    color: #a36c05;
+    border: dashed;
+    /* box-shadow: 0 8px 50px rgba(33, 150, 243, 0.4), 0 4px 8px rgba(33, 150, 243, 0.2);  */
+}
+
+.in-progress .vertical-timeline-element-content {
+    border: dashed;
+    color: #a36c05;
+    /* box-shadow: 0 8px 50px rgba(245, 228, 118, 0.9), 0 4px 8px rgba(249, 219, 25, 0.2);  */
+}
+
+.resolved .vertical-timeline-element-content {
+    color: #a36c05;
+    border: dashed;
+    /* box-shadow: 0 8px 40px rgba(54, 228, 115, 0.5), 0 4px 8px rgba(16, 204, 82, 0.2);  */
+}
+
+.rejected .vertical-timeline-element-content {
+    margin-left: 50px;
+    color: #a36c05;
+    border: dashed;
+    /* box-shadow: 0 8px 40px rgba(167, 81, 11, 0.5), 0 4px 8px rgba(16, 204, 82, 0.2); */
+}
+
+.vertical-timeline-element-content h4 {
+    margin: 0;
+    font-weight: bold;
+}
+
+.timeline {
+    position: relative;
+    left: 400px;
+}
+
+.vertical-timeline::before {
+    background-color: #f9bb00;
+    width: 5px; /* Set your desired color for the connecting line */
+}
+.visited {
+    background-color: lightgray !important; /* Change the background color for visited stages */
+    border-color: darkgray !important; /* Change the border color for visited stages */
+    box-shadow: 0 5px 20px darkgray !important; /* Add shadow for visited stages */
+}

@@ -52,11 +52,11 @@ const Navbar = () => {
         </h2>
         <ul className="navitems">
           <Navbarlist />
-          <li>
+          {/* <li>
             <a href="http://localhost:8000" target="_blank" style={{ textDecoration: 'none', color: 'white' }}>
               Chatbot
             </a>
-          </li>
+          </li> */}
           {/* Add search input with icon */}
           <li className="hehehe">
 {/*             

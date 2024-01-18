@@ -1,12 +1,9 @@
 import React from 'react'
-import 
-{ BsGrid1X2Fill, BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill, 
+import { BsGrid1X2Fill, BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill, 
   BsListCheck, BsMenuButtonWideFill, BsFillGearFill, }
- from 'react-icons/bs'
+ from 'react-icons/bs';
  import { FaUser } from 'react-icons/fa';
  import { Link } from 'react-router-dom';
-
-
 function Sidebaruser({openSidebarToggle, OpenSidebar}) {
   return (
     <aside id="sidebar" className={openSidebarToggle ? "sidebar-responsive": ""}>
@@ -18,14 +15,14 @@ function Sidebaruser({openSidebarToggle, OpenSidebar}) {
         </div>
 
         <ul className='sidebar-list'>
-            <li className='sidebar-list-item'>
-                <a href="">
-                    <BsGrid1X2Fill className='icon'/> Dashboard
-                </a>
-            </li>
-            <li className='sidebar-list-item'>
-          <Link to="/complaint">
+        <li className='sidebar-list-item'>
+          <Link to="/dashboarduser">
             <BsFillArchiveFill className='icon' /> Complaints history
+          </Link>
+        </li>
+            <li className='sidebar-list-item'>
+          <Link to="/tracking">
+            <BsFillArchiveFill className='icon' /> Tracking
           </Link>
         </li>
             <li className='sidebar-list-item'>

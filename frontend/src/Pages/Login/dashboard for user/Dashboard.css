@@ -55,6 +55,7 @@ body {
 /* End Header  */
 
 /* Sidebar  */
+
 #sidebar {
     grid-area: sidebar;
     height: 100%;
@@ -62,6 +63,10 @@ body {
     overflow-y: auto;
     transition: all 0.5s;
     -webkit-transition: all 0.5s;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.9); /* You can adjust the color and intensity */
+    /* Add padding if necessary */
+    padding: 10px;
 }
 
 .sidebar-title {
@@ -173,11 +178,12 @@ body {
     color: white;
 }
 .header-left {
-    font-size: 24px;
-    font-weight: bold;
-    color: #08007b; /* Adjust the color as needed */
+    text-align: center;
+    font-size: 2.5rem;
     margin-bottom: 20px;
-    padding-top: 20px;
+    font-family: "Abril Fatface", serif;
+    color: rgb(174, 127, 27);
+    text-shadow: 2px 2px 4px rgba(206, 186, 155, 0.9);
 }
 
 .charts {

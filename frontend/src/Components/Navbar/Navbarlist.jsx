@@ -1,11 +1,12 @@
 import {
-  faBalanceScale,
+ faBalanceScale,
   faFileAlt,
   faHome,
   faInfoCircle,
   faCogs,
   faQuestionCircle,
   faVideo,
+  faBook, faNewspaper,
   faEnvelope
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -29,14 +30,20 @@ const Navbarlist = () => {
       // icon: faHome,
     },
     {
-      title: "Features",
-      url: "/features",
+      title: "Contact",
+      url: "/contact",
       cName: "Navlinks",
-      // icon: faCogs,
+      icon: faEnvelope,
+    },
+     {
+      title: "Blogs",
+      url: "/Blogs",
+      cName: "Navlinks",
+      icon: faNewspaper,
     },
     {
       title: "B2B services",
-      url: "/contact",
+      url: "/",
       cName: "Navlinks",
       // icon: faEnvelope,
     },

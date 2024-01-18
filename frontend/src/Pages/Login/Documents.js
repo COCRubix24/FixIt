@@ -5,7 +5,11 @@ import { Link } from "react-router-dom";
 import JWT from "../../SECRET";
 import Help from "./Help";
 import { useNavigate } from "react-router-dom";
-
+import HelpBg from "../../assets/help.png";
+import girl from "../../assets/chat5.png";
+import stars from "../../assets/chat2.png";
+import thanks from "../../assets/chat1.png";
+import Blob from "./blob.gif";
 const Documents = () => {
     const [anonymous, setAnonymous] = useState(false);
     const [selectedFiles, setSelectedFiles] = useState();
@@ -13,11 +17,7 @@ const Documents = () => {
     const [additionalInformation, setAdditionalInformation] = useState("");
     const [filteredCompanies, setFilteredCompanies] = useState([]);
     const [pinata, setPinata] = useState("");
-    const [companies] = useState([
-        "Bata",
-        "BananaChips Inc.",
-        // Add more company names here
-    ]);
+    const [companies] = useState(["Bata", "BananaChips Inc.", "Amazon"]);
     const navigate = useNavigate();
     const [recommendation, setRecommendation] = useState("");
 
@@ -45,6 +45,8 @@ const Documents = () => {
             );
         } else if (input.toLowerCase() === "bananachips inc.") {
             setRecommendation("usually pakaging issues");
+        } else if (input.toLowerCase() === "amazon") {
+            setRecommendation("defects");
         } else {
             setRecommendation("");
         }
@@ -97,7 +99,7 @@ const Documents = () => {
                     companyName,
                     pinata: res.data,
                     companies,
-                    additionalInformation
+                    additionalInformation,
                 },
             });
         } catch (error) {
@@ -106,73 +108,113 @@ const Documents = () => {
     };
 
     return (
-        <div className="documents-container">
-            <h2>File a Complaint</h2>
-            <form onSubmit={handleSubmit} className="complaint-form">
-                <div className="form-group">
-                    <label>
-                        Company Name:
-                        <input
-                            type="text"
-                            value={companyName}
-                            onChange={handleCompanyNameChange}
-                        />
-                        {filteredCompanies.length > 0 && (
-                            <ul className="autocomplete-list">
-                                {filteredCompanies.map((company) => (
-                                    <li
-                                        key={company}
-                                        onClick={() =>
-                                            handleCompanySelection(company)
-                                        }
-                                    >
-                                        {company}
-                                    </li>
-                                ))}
-                            </ul>
+        <div className="help-whole">
+            <img src={Blob} />
+            <div className="documents-container">
+                <h2>File a Complaint</h2>
+                <form onSubmit={handleSubmit} className="complaint-form">
+                    <div className="form-group">
+                        <label>
+                            Company Name:
+                            <input
+                                type="text"
+                                value={companyName}
+                                onChange={handleCompanyNameChange}
+                            />
+                            {filteredCompanies.length > 0 && (
+                                <ul className="autocomplete-list">
+                                    {filteredCompanies.map((company) => (
+                                        <li
+                                            key={company}
+                                            onClick={() =>
+                                                handleCompanySelection(company)
+                                            }
+                                        >
+                                            {company}
+                                        </li>
+                                    ))}
+                                </ul>
+                            )}
+                        </label>
+                        {recommendation && (
+                            <p className="recommendation">{recommendation}</p>
                         )}
-                    </label>
-                    {recommendation && (
-                        <p className="recommendation">{recommendation}</p>
-                    )}
-                </div>
-                <div className="form-group">
-                    <label>
-                        Attach Files:
-                        <input
-                            type="file"
-                            multiple
-                            onChange={handleFileChange}
-                        />
-                    </label>
-                </div>
-                <div className="form-group">
-                    <label>
-                        File anonymously:
-                        <input
-                            type="checkbox"
-                            checked={anonymous}
-                            onChange={handleAnonymousChange}
-                        />
-                    </label>
-                </div>
-                <div className="form-group">
-                    <label>Additional Information (Optional):</label>
-                    <textarea
-                        rows="4"
-                        value={additionalInformation}
-                        onChange={handleAdditionalInformationChange}
-                        style={{ width: "425px" }}
+                    </div>
+                    <img
+                        src={thanks}
+                        style={{
+                            width: "13rem",
+                            zIndex: "0.5",
+                            position: "absolute",
+                            // float: "right",
+                            top: "7%",
+                            left: "62%",
+                        }}
                     />
-                    {/* <Help /> */}
-                </div>
+                    <div className="form-group">
+                        <label>
+                            Attach Files:
+                            <input
+                                type="file"
+                                multiple
+                                onChange={handleFileChange}
+                            />
+                        </label>
+                    </div>
+                    <div className="form-group">
+                        <label>
+                            File anonymously:
+                            <input
+                                type="checkbox"
+                                checked={anonymous}
+                                onChange={handleAnonymousChange}
+                            />
+                        </label>
+                    </div>
 
-                {/* <Link to="/help"> */}
-                <button type="submit" className="submit-button">
-                    Submit
-                </button>
-                {/* </Link> */}
-            </form>
+                    <img
+                        src={stars}
+                        style={{
+                            width: "15rem",
+                            zIndex: "0.5",
+                            position: "absolute",
+                            // float: "right",
+                            top: "30%",
+                            left: "20%",
+                        }}
+                    />
+
+                    <div className="form-group">
+                        <label>Additional Information (Optional):</label>
+                        <textarea
+                            rows="4"
+                            value={additionalInformation}
+                            onChange={handleAdditionalInformationChange}
+                            style={{ width: "425px" }}
+                        />
+                        {/* <Help /> */}
+                    </div>
+
+                    {/* <Link to="/help"> */}
+                    <button type="submit" className="submit-button">
+                        Submit
+                    </button>
+                    {/* </Link> */}
+                </form>
+                <div>
+                    <img
+                        src={girl}
+                        style={{
+                            width: "15rem",
+                            zIndex: "0.5",
+                            position: "relative",
+                            float: "right",
+                            top: "-180px",
+                            right: "-130px",
+                        }}
+                    />
+                </div>
+            </div>
         </div>
     );
 };

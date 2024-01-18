@@ -90,7 +90,7 @@ const Login = () => {
             );
             checkUserLoggedIn();
             console.log("Login succesful");
-            navigate("/");
+            navigate("/dashboarduser");
         } catch (error) {
             console.error(error.response);
         }
@@ -111,7 +111,7 @@ const Login = () => {
             <div id="LoginReg" className={containerClass}>
                 <div className="Login">
                     <div className="content">
-                        <h1>Log In</h1>
+                        <h1 className="lalala">LOG IN</h1>
                         <label className="inp" htmlFor="usernameInput">
                             <input
                                 placeholder="Enter your email"
@@ -212,7 +212,7 @@ const Login = () => {
 
                 <div className="Register">
                     <div className="content">
-                        <h1>Sign Up</h1>
+                        <h1 className="lalala">SIGN UP</h1>
                         <label className="inp" htmlFor="emailInput">
                             <input
                                 placeholder="Enter your email"
