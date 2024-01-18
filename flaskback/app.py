@@ -70,7 +70,7 @@ def generate_content():
     image = data.get('pinataIPFS', '[{"key":"pinataIPFS","value":"https://ipfs.io/ipfs/QmWcwrMBCYEFUotUogeFVgYj5ACWE9GrLQ3r5a81Pjhu3x","description":"","type":"text","enabled":true}]')
     image_data = input_image_setup("https://ipfs.io/ipfs/" + image)
 
-    print(image_data)
+    # print(image_data)
     predefined_text = (
         f"Assume you are the head of Managing Complaints. Route complaints to the relevant departments of the company. "
         f"Here is the list of departments from which you have to choose one using the description and receipt which Consumer has sent, if no dept is matching properly then select General Department: {depts}. Strictly use English language and return 2 outputs in between them insert a semicolon to differentiate , note reply only the output nothing else. These 2 outputs are required: deptSelected (the complaint through which department is), keywords in 3 words strictly English for future analysis"
@@ -78,7 +78,7 @@ def generate_content():
 
     try:
         response = get_gemini_response(input_prompt, image_data, predefined_text)
-        # print(response)
+        print(response)
 
         # Assuming response is a string separated by semicolons
         parts = [part.strip() for part in response.split(';')]

@@ -16,6 +16,7 @@ const DisplayCaseDetailsPage = () => {
         status: state.status || "Submitted complain",
         openedByEmail: state.email || "altaf7@gmail.com",
         category: state.department || "Product Quality",
+        keywords: state.keywords || "bad food, mcdonalds"
     };
 
     return (
