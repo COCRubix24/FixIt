@@ -18,6 +18,11 @@ import Sidebaruser from "./Pages/Login/dashboard for user/Sidebaruser.jsx";
 import Mainuser from "./Pages/Login/dashboard for user/Mainuser.jsx";
 import Headeruser from "./Pages/Login/dashboard for user/Headeruser.jsx";
 import Dashboarduser from "./Pages/Login/dashboard for user/Dashboarduser.jsx";
+import Ask from "./Pages/Login/Ask.js";
+import LoginB from "./Pages/Login/LoginB.js";
+import DashboardB from "./Pages/Login/dashboard for user/DashboardB.js";
+import Complaint from "./Pages/Login/dashboard for user/CaseListP.js";
+import CaseListP from "./Pages/Login/dashboard for user/CaseListP.js";
 function App() {
     return (
         <UserProvider>
@@ -25,6 +30,7 @@ function App() {
                 <Navbar />
                 <Routes>
                     <Route path="/login" element={<Login />} />
+                    <Route path="/loginb" element={<LoginB />} />
                     <Route path="/dashboardbusiness" element={<Dashboard />} />
                     <Route path="/" element={<LP />} />
                     <Route path="/docs" element={<Documents />} />
@@ -32,6 +38,9 @@ function App() {
                     <Route path="/case" element={<DisplayCaseDetailsPage />} />
                     <Route path="/thanks" element={<Thanks />} />
                     <Route path="/dashboarduser" element={<Dashboarduser />} />
+                    <Route path="/dashb" element={<DashboardB />} />
+                    <Route path="/ask" element={<Ask />} />
+                    <Route path="/caselists" element={<CaseListP />} />
                 </Routes>
                 <Footer />
             </BrowserRouter>

@@ -66,7 +66,6 @@ const Help = () => {
             anonymous,
             companyName,
             pinata,
-            filteredCompanies,
             // Add phoneNumber, phoneExtension, and countryCode if applicable
         };
 

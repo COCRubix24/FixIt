@@ -24,7 +24,7 @@ function Sidebaruser({openSidebarToggle, OpenSidebar}) {
                 </a>
             </li>
             <li className='sidebar-list-item'>
-          <Link to="/complaint-history">
+          <Link to="/complaint">
             <BsFillArchiveFill className='icon' /> Complaints history
           </Link>
         </li>

@@ -8,50 +8,124 @@ import
 
 function Mainuser() {
 
-    const data = [
-        {
-          name: 'Page A',
-          uv: 4000,
-          pv: 2400,
-          amt: 2400,
-        },
-        {
-          name: 'Page B',
-          uv: 3000,
-          pv: 1398,
-          amt: 2210,
-        },
-        {
-          name: 'Page C',
-          uv: 2000,
-          pv: 9800,
-          amt: 2290,
-        },
-        {
-          name: 'Page D',
-          uv: 2780,
-          pv: 3908,
-          amt: 2000,
-        },
-        {
-          name: 'Page E',
-          uv: 1890,
-          pv: 4800,
-          amt: 2181,
-        },
-        {
-          name: 'Page F',
-          uv: 2390,
-          pv: 3800,
-          amt: 2500,
-        },
-        {
-          name: 'Page G',
-          uv: 3490,
-          pv: 4300,
-          amt: 2100,
-        },
-      ];
+const data = [
+  {
+    category: 'Product Defects',
+    resolved: 25,
+    pending: 10,
+    total: 35,
+  },
+  {
+    id: 2,
+    category: 'Service Dec.',
+    resolved: 15,
+    pending: 5,
+    total:20
+  },
+  {
+    id: 3,
+    category: 'Delivery Issues',
+    resolved: 20,
+    pending: 8,
+    total: 28
+  },
+  {
+    id: 4,
+    category: 'Customer Service',
+    resolved: 18,
+    pending: 12,
+    total: 30
+  },
+  // Add more categories as needed
+];
+const trendData = [
+  {
+    month: 'Jan',
+    category: 'Product Defects',
+    resolved: 25,
+    pending: 10,
+    total: 35,
+  },
+  {
+    month: 'Feb',
+    category: 'Product Defects',
+    resolved: 28,
+    pending: 8,
+    total: 36,
+  },
+  {
+    month: 'Mar',
+    category: 'Product Defects',
+    resolved: 30,
+    pending: 5,
+    total: 35,
+  },
+  {
+    month: 'Jan',
+    category: 'Service Dec.',
+    resolved: 15,
+    pending: 5,
+    total: 20,
+  },
+  {
+    month: 'Feb',
+    category: 'Service Dec.',
+    resolved: 18,
+    pending: 7,
+    total: 25,
+  },
+  {
+    month: 'Mar',
+    category: 'Service Dec.',
+    resolved: 20,
+    pending: 4,
+    total: 24,
+  },
+  {
+    month: 'Jan',
+    category: 'Delivery Issues',
+    resolved: 20,
+    pending: 8,
+    total: 28,
+  },
+  {
+    month: 'Feb',
+    category: 'Delivery Issues',
+    resolved: 22,
+    pending: 6,
+    total: 28,
+  },
+  {
+    month: 'Mar',
+    category: 'Delivery Issues',
+    resolved: 25,
+    pending: 3,
+    total: 28,
+  },
+  {
+    month: 'Jan',
+    category: 'Customer Service',
+    resolved: 18,
+    pending: 12,
+    total: 30,
+  },
+  {
+    month: 'Feb',
+    category: 'Customer Service',
+    resolved: 20,
+    pending: 8,
+    total: 28,
+  },
+  {
+    month: 'Mar',
+    category: 'Customer Service',
+    resolved: 22,
+    pending: 6,
+    total: 28,
+  },
+  // Add more months and categories as needed
+];
+
      
 
   return (
@@ -84,10 +158,10 @@ function Mainuser() {
             </div>
             <div className='card'>
                 <div className='card-inner'>
-                    <h3>Ratimgs</h3>
+                    <h3>Average Resolution Time</h3>
                     <BsFillBellFill className='card_icon'/>
                 </div>
-                <h1 className='hello'>42</h1>
+                <h1 className='hello'>48 hours</h1>
             </div>
         </div>
 
@@ -105,12 +179,12 @@ function Mainuser() {
             }}
             >
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
+                <XAxis dataKey="category" />
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Bar dataKey="pv" fill="#8884d8" />
-                <Bar dataKey="uv" fill="#82ca9d" />
+                <Bar dataKey="resolved" fill="#8884d8" />
+                <Bar dataKey="pending" fill="#82ca9d" />
                 </BarChart>
             </ResponsiveContainer>
 
@@ -118,7 +192,7 @@ function Mainuser() {
                 <LineChart
                 width={500}
                 height={300}
-                data={data}
+                data={trendData}
                 margin={{
                     top: 5,
                     right: 30,
@@ -127,12 +201,12 @@ function Mainuser() {
                 }}
                 >
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
+                <XAxis dataKey="month" />
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{ r: 8 }} />
-                <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+                <Line type="monotone" dataKey="resolved" stroke="#8884d8" activeDot={{ r: 8 }} />
+                <Line type="monotone" dataKey="pending" stroke="#82ca9d" />
                 </LineChart>
             </ResponsiveContainer>
 
