@@ -2,15 +2,15 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
 import { Link } from "react-router-dom";
-import { UserContext } from "../../context/UserContext";
+import { CompanyContext } from "../../context/CompanyContext";
 import { useContext } from "react";
 
 import axios from "axios";
 import { Line } from "recharts";
 
 const LoginB = () => {
-    const { isLoggedIn, userr, checkUserLoggedIn, handleLogout } =
-        useContext(UserContext);
+    const { isLoggedInC, Companyy, checkCompanyLoggedIn, handleLogout2 } =
+        useContext(CompanyContext);
 
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
@@ -18,7 +18,7 @@ const LoginB = () => {
 
     const [email1, setEmail1] = useState("");
     const [password1, setPassword1] = useState("");
-    const [phone1, setPhone1] = useState("");
+    // const [phone1, setPhone1] = useState("");
     const [name1, setName1] = useState("");
     const [departments, setDepartments] = useState("");
 
@@ -90,7 +90,7 @@ const LoginB = () => {
                     credentials: "include",
                 }
             );
-            checkUserLoggedIn();
+            checkCompanyLoggedIn();
 
             console.log(formData);
             console.log("Login succesful");

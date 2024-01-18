@@ -4,7 +4,7 @@ import React from "react";
 import "./CaseDeets.css"; // Import your CSS for styling
 
 const CaseDeets = ({ caseDetails }) => {
-    const { caseID, createdTime, status, openedByEmail, category } =
+    const { caseID, createdTime, status, openedByEmail, category, keywords } =
         caseDetails;
 
     return (
@@ -25,6 +25,9 @@ const CaseDeets = ({ caseDetails }) => {
                 </div>
                 <div className="detail">
                     <strong>Category:</strong> {category}
+                </div>
+                <div className="detail">
+                    <strong>Subject:</strong> {keywords}
                 </div>
             </div>
         </div>

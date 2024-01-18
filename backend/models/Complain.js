@@ -46,6 +46,15 @@ const ComplainSchema = new mongoose.Schema(
       default: "Submitted complain",
       required: true,
     },
+    description: {
+      type: String,
+    },
+    department: {
+      type: String,
+    },
+    keywords: {
+      type: String,
+    }
   },
   { timestamps: true }
 );

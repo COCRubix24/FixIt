@@ -97,6 +97,7 @@ const Documents = () => {
                     companyName,
                     pinata: res.data,
                     companies,
+                    additionalInformation
                 },
             });
         } catch (error) {
