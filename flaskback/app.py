@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-
+import requests
 from dotenv import load_dotenv
 import os
 from PIL import Image
@@ -18,18 +18,21 @@ def get_gemini_response(input, image, prompt):
     response = model.generate_content([input, image[0], prompt])
     return response.text
 
-def input_image_setup(uploaded_file):
-    if uploaded_file is not None:
-        bytes_data = uploaded_file.read()
+def input_image_setup(ipfs_link):
+    # Fetch the image data from the provided IPFS link
+    response = requests.get(ipfs_link)
+
+    if response.status_code == 200:
+        bytes_data = response.content
         image_parts = [
             {
-                "mime_type": uploaded_file.mimetype,
+                "mime_type": "image/jpeg",  # Update with the appropriate mime type based on your IPFS link
                 "data": bytes_data
             }
         ]
         return image_parts
     else:
-        raise FileNotFoundError("No file uploaded")
+        raise FileNotFoundError("Failed to fetch image data from IPFS")
 
 @app.route('/')
 def home():
@@ -46,11 +49,12 @@ def generate_content():
     )
 
     try:
-        image_data = input_image_setup(request.files['file'])
+        # image_data = input_image_setup("https://ipfs.io/ipfs/QmWcwrMBCYEFUotUogeFVgYj5ACWE9GrLQ3r5a81Pjhu3x")
+        image_data = input_image_setup(request.form['pinataIPFS'])
         response = get_gemini_response(input_prompt, image_data, predefined_text)
         return jsonify({"generatedContent": response})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5000)
