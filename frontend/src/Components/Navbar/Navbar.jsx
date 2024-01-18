@@ -2,6 +2,8 @@ import React from 'react';
 import './Navbar.css';
 import Navbarlist from './Navbarlist';
 import { UserContext } from '../../context/UserContext';
+import { CompanyContext } from '../../context/CompanyContext';
+
 import { useContext } from 'react';
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
@@ -10,13 +12,14 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 const Navbar = () => {
   const { isLoggedIn, userr, checkUserLoggedIn, handleLogout } = useContext(UserContext);
+  const { isLoggedInC, Companyy, checkCompanyLoggedIn, handleLogout2 } = useContext(CompanyContext);
 
   const location = useLocation();
 
   const isLoginPage = location.pathname === '/login';
 
   const renderAuthButton = () => {
-    if (isLoggedIn) {
+    if (isLoggedIn || isLoggedInC) {
       return (
         <div className="ml-auto">
           {isLoginPage ? null : (
