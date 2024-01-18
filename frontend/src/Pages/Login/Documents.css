@@ -10,6 +10,10 @@
     overflow: hidden;
     /* opacity: 0.5; */
 }
+
+.blobby {
+    z-index: 1;
+}
 .documents-container {
     max-width: 500px;
     margin: auto;
