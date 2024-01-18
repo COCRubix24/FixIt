@@ -10,6 +10,7 @@ import lawyerRoute from "./routes/Lawyer.js";
 import complainRouter from "./routes/complain.js";
 import companyRouter from "./routes/company.js";
 import contactRoute from "./routes/contact.js";
+import ocrRoute from "./routes/ocrAI.js"
 
 const app = express();
 dotenv.config();
@@ -57,6 +58,7 @@ app.use("/api/complain", complainRouter);
 app.use("/api/company", companyRouter);
 
 app.use("/api/contact", contactRoute);
+app.use("/api/ocr", ocrRoute);
 
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;
