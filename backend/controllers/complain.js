@@ -19,11 +19,11 @@ export const createComplain = async (req, res) => {
     preferedContactMethod,
     pinataIPFS,
   } = req.body;
+  console.log(req.body);
 
   if (
     !companyName ||
     !createdBy ||
-    isAnonymous ||
     !preferedLanguage ||
     !preferedContactMethod
   ) {
@@ -98,6 +98,7 @@ export const createComplain = async (req, res) => {
 
 export const getAllComplain = async (req, res) => {
   const { id } = req.body;
+  console.log(id);
   try {
     const complains = await Complain.find({ createdBy: id });
     if (!complains) {
