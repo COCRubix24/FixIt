@@ -25,11 +25,16 @@ export const createComplain = async (req, res) => {
     throw new Error("Invalid credentials");
   }
   try {
+    const result = companyName.toLowerCase();
+    const company = await Company.find({ companyName: result });
+    if (!company) {
+      throw new Error("Invalid company Name");
+    }
     if (isAnonymous === true) {
       pinataIPFS = "https://ipfs.io/ipfs/" + pinataIPFS;
       const newComplain = {
         companyName: companyName,
-        companyId: "123",
+        companyId: company._id,
         createdBy: createdBy,
         pinataIPFS: pinataIPFS,
         preferedLanguage: preferedLanguage,
@@ -43,7 +48,7 @@ export const createComplain = async (req, res) => {
       }
       const newComplain = {
         companyName: companyName,
-        companyId: "123",
+        companyId: company._id,
         email: email,
         name: name,
         phone: phone,

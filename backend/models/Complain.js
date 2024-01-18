@@ -40,6 +40,12 @@ const ComplainSchema = new mongoose.Schema(
       enum: ["web", "phone", "chat"],
       required: true,
     },
+    status: {
+      type: String,
+      enum: ["Submitted complain", "In progress", "resolved", "rejected"],
+      default: "Submitted complain",
+      required: true,
+    },
   },
   { timestamps: true }
 );
