@@ -67,3 +67,29 @@ export const createComplain = async (req, res) => {
     console.error(error);
   }
 };
+
+export const getAllComplain = async (req, res) => {
+  const { id } = req.body;
+  try {
+    const complains = await Complain.find({ createdBy: id });
+    if (!complains) {
+      throw new Error("Invalid user id");
+    }
+    res.status(200).json({ complains });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getSingleComplain = async (req, res) => {
+  const { complainId } = req.body;
+  try {
+    const complain = await Complain.find({ _id: complainId });
+    if (!complain) {
+      throw new Error("Invalid Complain ID");
+    }
+    res.status(200).json({ complain });
+  } catch (error) {
+    console.log(error);
+  }
+};
