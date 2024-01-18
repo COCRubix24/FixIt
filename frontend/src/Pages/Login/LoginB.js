@@ -20,6 +20,7 @@ const LoginB = () => {
     const [password1, setPassword1] = useState("");
     const [phone1, setPhone1] = useState("");
     const [name1, setName1] = useState("");
+    const [departments, setDepartments] = useState("");
 
     // Register action
     const handleClick1 = async (e) => {
@@ -39,8 +40,9 @@ const LoginB = () => {
 
         const formData = {
             email: email1,
-            name: name1,
+            companyName: name1,
             password: password1,
+            departments: departments.split(",").map((dep) => dep.trim()),
         };
         console.log(formData);
 
@@ -81,7 +83,7 @@ const LoginB = () => {
 
         try {
             const response = await axios.post(
-                "http://localhost:8800/api/auth/login",
+                "http://localhost:8800/api/company/loginCompany",
                 formData,
                 {
                     withCredentials: true,
@@ -89,9 +91,12 @@ const LoginB = () => {
                 }
             );
             checkUserLoggedIn();
+
+            console.log(formData);
             console.log("Login succesful");
             navigate("/");
         } catch (error) {
+            console.log(formData);
             console.error(error.response);
         }
     };
@@ -257,6 +262,18 @@ const LoginB = () => {
                                 value={password1}
                                 onChange={(e) => setPassword1(e.target.value)}
                             />
+                            <label className="inp" htmlFor="departmentsInput">
+                                <input
+                                    placeholder="Enter departments (comma-separated)"
+                                    id="departmentsInput"
+                                    type="text"
+                                    value={departments}
+                                    onChange={(e) =>
+                                        setDepartments(e.target.value)
+                                    }
+                                />
+                                <span className="focus-bg"></span>
+                            </label>
                             {/* <span className="label">Password</span> */}
                             <span className="focus-bg"></span>
                         </label>

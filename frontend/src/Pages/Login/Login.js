@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import './Login.css';
+import "./Login.css";
 
-import { UserContext } from '../../context/UserContext';
-import { useContext } from 'react';
+import { UserContext } from "../../context/UserContext";
+import { useContext } from "react";
 
-import axios from 'axios';
+import axios from "axios";
 
 const Login = () => {
-    const { isLoggedIn, userr, checkUserLoggedIn, handleLogout } = useContext(UserContext);
+    const { isLoggedIn, userr, checkUserLoggedIn, handleLogout } =
+        useContext(UserContext);
 
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
@@ -23,15 +24,15 @@ const Login = () => {
     const handleClick1 = async (e) => {
         e.preventDefault();
         if (!validateEmail(email1)) {
-            alert('Invalid email address');
+            alert("Invalid email address");
             return;
         }
         if (!validatePassword(password1)) {
-            alert('Password too weak. Try again.');
+            alert("Password too weak. Try again.");
             return;
         }
         if (!name1 || !phone1) {
-            alert('Please fill all the fields first.');
+            alert("Please fill all the fields first.");
             return;
         }
 
@@ -39,14 +40,17 @@ const Login = () => {
             email: email1,
             name: name1,
             phone: phone1,
-            password: password1
-        }
-        console.log(formData)
+            password: password1,
+        };
+        console.log(formData);
 
         try {
-            const response = await axios.post('http://localhost:8800/api/auth/register', formData);
+            const response = await axios.post(
+                "http://localhost:8800/api/auth/register",
+                formData
+            );
             console.log(response.data);
-            console.log("Register succesful")
+            console.log("Register succesful");
             navigate("/");
         } catch (error) {
             console.error(error.response);
@@ -67,19 +71,23 @@ const Login = () => {
     const handleClick = async (e) => {
         e.preventDefault();
         if (!email || !password) {
-            alert('Please fill all the fields first.');
+            alert("Please fill all the fields first.");
             return;
         }
         const formData = {
             email: email,
-            password: password
-        }
+            password: password,
+        };
 
         try {
-            const response = await axios.post('http://localhost:8800/api/auth/login', formData, {
-                withCredentials: true,
-                credentials: "include",
-            });
+            const response = await axios.post(
+                "http://localhost:8800/api/auth/login",
+                formData,
+                {
+                    withCredentials: true,
+                    credentials: "include",
+                }
+            );
             checkUserLoggedIn();
             console.log("Login succesful");
             navigate("/");
@@ -88,16 +96,15 @@ const Login = () => {
         }
     };
 
-    const [containerClass, setContainerClass] = useState('');
+    const [containerClass, setContainerClass] = useState("");
 
     const handleRegisterClick = () => {
-        setContainerClass('active');
+        setContainerClass("active");
     };
 
     const handleLoginClick = () => {
-        setContainerClass('close');
+        setContainerClass("close");
     };
-
 
     return (
         <>
@@ -106,16 +113,33 @@ const Login = () => {
                     <div className="content">
                         <h1>Log In</h1>
                         <label className="inp" htmlFor="usernameInput">
-                            <input placeholder="Enter your email" id="usernameInput" type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
+                            <input
+                                placeholder="Enter your email"
+                                id="usernameInput"
+                                type="text"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
                             <span className="label">Email</span>
                             <span className="focus-bg"></span>
                         </label>
                         <label className="inp" htmlFor="passwordInput">
-                            <input placeholder="Enter your password" id="passwordInput" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                            <input
+                                placeholder="Enter your password"
+                                id="passwordInput"
+                                type="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
                             <span className="label">Password</span>
                             <span className="focus-bg"></span>
                         </label>
-                        <input className="LoginBtn" type="button" onClick={handleClick} value="Sign In" />
+                        <input
+                            className="LoginBtn"
+                            type="button"
+                            onClick={handleClick}
+                            value="Sign In"
+                        />
                     </div>
                 </div>
 
@@ -139,8 +163,15 @@ const Login = () => {
                             <line x1="23" y1="11" x2="17" y2="11" />
                         </svg>
                         <h1>Welcome Back!</h1>
-                        <p>To stay connected with us, please log in with your personal info</p>
-                        <button type="button" id="register" onClick={handleRegisterClick}>
+                        <p>
+                            To stay connected with us, please log in with your
+                            personal info
+                        </p>
+                        <button
+                            type="button"
+                            id="register"
+                            onClick={handleRegisterClick}
+                        >
                             Login
                         </button>
                     </div>
@@ -165,8 +196,15 @@ const Login = () => {
                             <line x1="15" y1="12" x2="3" y2="12" />
                         </svg>
                         <h1>Hello !</h1>
-                        <p>Enter your personal details and start the journey with us.</p>
-                        <button type="button" id="login" onClick={handleLoginClick}>
+                        <p>
+                            Enter your personal details and start the journey
+                            with us.
+                        </p>
+                        <button
+                            type="button"
+                            id="login"
+                            onClick={handleLoginClick}
+                        >
                             Register
                         </button>
                     </div>
@@ -176,26 +214,55 @@ const Login = () => {
                     <div className="content">
                         <h1>Sign Up</h1>
                         <label className="inp" htmlFor="emailInput">
-                            <input placeholder="Enter your email" id="emailInput" type="email" value={email1} onChange={(e) => setEmail1(e.target.value)} />
+                            <input
+                                placeholder="Enter your email"
+                                id="emailInput"
+                                type="email"
+                                value={email1}
+                                onChange={(e) => setEmail1(e.target.value)}
+                            />
                             {/* <span className="label">Email</span> */}
                             <span className="focus-bg"></span>
                         </label>
                         <label className="inp" htmlFor="nameInput">
-                            <input placeholder="Enter your name" id="nameInput" type="text" value={name1} onChange={(e) => setName1(e.target.value)} />
+                            <input
+                                placeholder="Enter your name"
+                                id="nameInput"
+                                type="text"
+                                value={name1}
+                                onChange={(e) => setName1(e.target.value)}
+                            />
                             {/* <span className="label">Name</span> */}
                             <span className="focus-bg"></span>
                         </label>
                         <label className="inp" htmlFor="phoneInput">
-                            <input placeholder="Enter your phone number" id="phoneInput" type="text" value={phone1} onChange={(e) => setPhone1(e.target.value)} />
+                            <input
+                                placeholder="Enter your phone number"
+                                id="phoneInput"
+                                type="text"
+                                value={phone1}
+                                onChange={(e) => setPhone1(e.target.value)}
+                            />
                             {/* <span className="label">Phone Number</span> */}
                             <span className="focus-bg"></span>
                         </label>
                         <label className="inp" htmlFor="passwordInput">
-                            <input placeholder="Enter your password" id="passwordInput" type="password" value={password1} onChange={(e) => setPassword1(e.target.value)} />
+                            <input
+                                placeholder="Enter your password"
+                                id="passwordInput"
+                                type="password"
+                                value={password1}
+                                onChange={(e) => setPassword1(e.target.value)}
+                            />
                             {/* <span className="label">Password</span> */}
                             <span className="focus-bg"></span>
                         </label>
-                        <input className="LoginBtn" type="button" onClick={handleClick1} value="Sign Up" />
+                        <input
+                            className="LoginBtn"
+                            type="button"
+                            onClick={handleClick1}
+                            value="Sign Up"
+                        />
                     </div>
                 </div>
             </div>

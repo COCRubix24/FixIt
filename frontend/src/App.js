@@ -23,6 +23,7 @@ import LoginB from "./Pages/Login/LoginB.js";
 import DashboardB from "./Pages/Login/dashboard for user/DashboardB.js";
 import Complaint from "./Pages/Login/dashboard for user/CaseListP.js";
 import CaseListP from "./Pages/Login/dashboard for user/CaseListP.js";
+import Chat from "./Components/Chat.js";
 function App() {
     return (
         <UserProvider>
@@ -41,6 +42,7 @@ function App() {
                     <Route path="/dashb" element={<DashboardB />} />
                     <Route path="/ask" element={<Ask />} />
                     <Route path="/caselists" element={<CaseListP />} />
+                    <Route path="/chat" element={<Chat />} />
                 </Routes>
                 <Footer />
             </BrowserRouter>
