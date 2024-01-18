@@ -26,19 +26,19 @@ const Navbarlist = () => {
       title: "Home",
       url: "/",
       cName: "Navlinks",
-      icon: faHome,
+      // icon: faHome,
     },
     {
       title: "Features",
       url: "/features",
       cName: "Navlinks",
-      icon: faCogs,
+      // icon: faCogs,
     },
     {
-      title: "Contact",
+      title: "B2B services",
       url: "/contact",
       cName: "Navlinks",
-      icon: faEnvelope,
+      // icon: faEnvelope,
     },
     
   ];

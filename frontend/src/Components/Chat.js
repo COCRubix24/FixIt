@@ -1,5 +1,3 @@
-// Chat.js
-
 import React, { useState } from "react";
 import "./Chat.css"; // Import your CSS for styling
 

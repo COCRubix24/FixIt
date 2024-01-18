@@ -1,5 +1,3 @@
-// Help.js
-
 import React, { useState, useContext } from "react";
 import "./Help.css"; // Import your CSS for styling
 import Chat from "../../Components/Chat";
@@ -119,7 +117,7 @@ const Help = () => {
                             >
                                 <option value="">Select Language</option>
                                 <option value="english">English</option>
-                                <option value="spanish">Spanish</option>
+                                <option value="spanish">Hindi</option>
                                 {/* Add more language options */}
                             </select>
                         </div>
