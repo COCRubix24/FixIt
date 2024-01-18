@@ -1,6 +1,7 @@
 import cloudinary from "../config/cloudinary.js"; // Import the Cloudinary configuration
 import Complain from "../models/Complain.js";
 import { StatusCodes } from "http-status-codes";
+import Company from "../models/Company.js";
 
 export const createComplain = async (req, res) => {
   console.log(req.body);
@@ -25,8 +26,10 @@ export const createComplain = async (req, res) => {
     throw new Error("Invalid credentials");
   }
   try {
-    const result = companyName.toLowerCase();
-    const company = await Company.find({ companyName: result });
+    const company = await Company.findOne({
+      companyName: { $regex: new RegExp(companyName, "i") },
+    });
+
     if (!company) {
       throw new Error("Invalid company Name");
     }
