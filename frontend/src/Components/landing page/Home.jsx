@@ -1,6 +1,6 @@
 import React from "react";
 import BannerBackground from "../../assets/home-banner-background.png";
-import BannerImage from "../../assets/support-303213_1280.png";
+import BannerImage from "../../assets/bg.png";
 import './all.css'
 
 import { FiArrowRight } from "react-icons/fi";
@@ -30,8 +30,9 @@ const Home = () => {
             </Link>
         </div>
         <div className="home-image-section">
-          <img src={BannerImage} alt="" />
-        </div>
+  <img src={BannerImage} alt="" style={{ width: '70%', top:'0px' }} />
+</div>
+
       </div>
     </div>
   );
