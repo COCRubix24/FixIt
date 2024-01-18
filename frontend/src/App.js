@@ -28,6 +28,7 @@ import TrackingPage from "./Pages/Login/dashboard for user/TrackingPage.jsx";
 import ComplainthistoryPage from "./Pages/Login/dashboard for user/complaint history/ComplainthistoryPage.jsx";
 import Blog from "./Components/Navbar/Blog.jsx";
 import Contactus from "./Components/Navbar/Contactus.jsx";
+import ChatEngineComponent from "./Pages/Login/ChatEngine.js";
 
 function App() {
     return (
@@ -65,6 +66,10 @@ function App() {
                         />
                         <Route path="/Blogs" element={<Blog />} />
                         <Route path="/contact" element={<Contactus />} />
+                        <Route
+                            path="/chatengine"
+                            element={<ChatEngineComponent />}
+                        />
                     </Routes>
                     <Footer />
                 </BrowserRouter>
