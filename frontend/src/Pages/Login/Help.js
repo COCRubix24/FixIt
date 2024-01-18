@@ -72,6 +72,8 @@ const Help = () => {
                 data
             );
             console.log(response.data);
+            await localStorage.setItem('currCase', JSON.stringify(response.data));
+          
             alert("successful");
 
             switch (preferredContactMethod) {
@@ -79,9 +81,7 @@ const Help = () => {
                     setShowChat(true);
                     break;
                 case "web":
-                    navigate("/case", {
-                        state: response.data,
-                    });
+                    navigate("/case");
                     break;
                 case "phone":
                     navigate("/thanks");

@@ -8,7 +8,7 @@ import {
 } from "../controllers/complain.js";
 
 router.post("/createComplain", createComplain);
-router.get("/getAllComplain", getAllComplain);
+router.post("/getAllComplain", getAllComplain);
 router.get("/getSingleComplain", getSingleComplain);
 
 export default router;
