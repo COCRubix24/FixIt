@@ -52,7 +52,7 @@ const CaseListsB = () => {
                     {complaints.length>0 ? complaints.map((item, index) => (
                         <tr key={index}>
                             <td>{item._id}</td>
-                            <td>{item.name}</td>
+                            <td>{item.name ? item.name : "Anomyous"}</td>
                             <td>{item.email}</td>
                             <td>{item.keywords}</td>
                             <td>{item.createdAt}</td>
