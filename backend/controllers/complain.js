@@ -70,12 +70,15 @@ export const createComplain = async (req, res) => {
       };
     }
 
-    const flaskApiResponse = await axios.post('http://localhost:5000/classifyDept/', {
-      input: description,  // Provide the appropriate input data
-      depts: company.departments,  // Provide the appropriate departments data
-      pinataIPFS: pinataIPFS,  // Assuming you want to include pinataIPFS in the request
-    });
-    console.log(flaskApiResponse.data)
+    const flaskApiResponse = await axios.post(
+      "http://localhost:5000/classifyDept/",
+      {
+        input: description, // Provide the appropriate input data
+        depts: company.departments, // Provide the appropriate departments data
+        pinataIPFS: pinataIPFS, // Assuming you want to include pinataIPFS in the request
+      }
+    );
+    console.log(flaskApiResponse.data);
 
     // Extract relevant data from the Flask API response
     const flaskApiData = flaskApiResponse.data.result;
@@ -116,6 +119,30 @@ export const getSingleComplain = async (req, res) => {
     const complain = await Complain.find({ _id: complainId });
     if (!complain) {
       throw new Error("Invalid Complain ID");
+    }
+    res.status(200).json({ complain });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const updateSingleComplain = async (req, res) => {
+  const { complainId, status } = req.body;
+  try {
+    if (!complainId || !status) {
+      throw new Error("Invalid credentials");
+    }
+    const complain = await Complain.findByIdAndUpdate(
+      { _id: complainId },
+      {
+        status: status,
+      },
+      {
+        new: true,
+      }
+    );
+    if (!complain) {
+      throw new Error("Invalid complain ID");
     }
     res.status(200).json({ complain });
   } catch (error) {
