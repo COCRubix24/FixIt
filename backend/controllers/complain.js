@@ -2,6 +2,8 @@ import cloudinary from "../config/cloudinary.js";
 import Complain from "../models/Complain.js";
 import { StatusCodes } from "http-status-codes";
 import Company from "../models/Company.js";
+import sgMail from "@sendgrid/mail";
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 import axios from "axios";
 
@@ -91,7 +93,13 @@ export const createComplain = async (req, res) => {
 
     // Create a Complain record
     const complain = await Complain.create(complainData);
-
+    const msg = {
+      to: complain.email, // Change to your recipient
+      from: "moheetshendarkar@gmail.com", // Change to your verified sender
+      subject: "Your recent Case Details",
+      html: "<html><h1>Company - ${complain.companyName}</h1><h5>Company ID - ${complain.companyId}</h5><h2>${complain.name}</h2><p>To view the receipt copy and paste - https://ipfs.io/ipfs/${complain.pinataIPFS}</p></html>",
+    };
+    const sendGridInfo = await sgMail.send(msg);
     res.status(201).json({ complain });
   } catch (error) {
     console.error(error);
@@ -155,7 +163,7 @@ export const getAllCompanyComplain = async (req, res) => {
   console.log(id);
   try {
     const complains = await Complain.find({ companyId: id });
-    console.log("2", complains)
+    console.log("2", complains);
     // if (!complains) {
     //   throw new Error("Invalid user id");
     // }
