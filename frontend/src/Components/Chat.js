@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Chat.css"; // Import your CSS for styling
 
+
 const Chat = ({ username, onClose }) => {
     const [inputMessage, setInputMessage] = useState("");
     const [chatHistory, setChatHistory] = useState([]);

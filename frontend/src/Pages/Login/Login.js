@@ -43,13 +43,41 @@ const Login = () => {
             password: password1,
         };
         console.log(formData);
+        let data = {
+            "username": name1,
+            "secret": password1,
+            // "email": "b_baker@mail.com",
+            // "first_name": "Bob",
+            // "last_name": "Baker",
+            // "custom_json": { "fav_game": "Candy Crush", "high_score": 2002 }
+        };
 
+        let config = {
+            method: 'post',
+            url: 'https://api.chatengine.io/users/',
+            headers: {
+                'PRIVATE-KEY': "f85dcad6-4829-4abd-9b92-763858c7492b"
+            },
+            data: data
+        };
+
+        axios(config)
+            .then(function (response) {
+                console.log(JSON.stringify(response.data));
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        await localStorage.setItem('userr', JSON.stringify(data));
+
+        console.log("one part done")
         try {
             const response = await axios.post(
                 "http://localhost:8800/api/auth/register",
                 formData
             );
             console.log(response.data);
+
             console.log("Register succesful");
             navigate("/");
         } catch (error) {
@@ -79,6 +107,7 @@ const Login = () => {
             password: password,
         };
 
+
         try {
             const response = await axios.post(
                 "http://localhost:8800/api/auth/login",
@@ -88,6 +117,7 @@ const Login = () => {
                     credentials: "include",
                 }
             );
+
             checkUserLoggedIn();
             console.log("Login succesful");
             navigate("/");
