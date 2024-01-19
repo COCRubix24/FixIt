@@ -12,7 +12,7 @@ function CategoryPage() {
 
     return (
         <div className="grid-container">
-            <Header OpenSidebar={Category} />
+            {/* <Header OpenSidebar={Category} /> */}
             <Sidebar
                 openSidebarToggle={openSidebarToggle}
                 OpenSidebar={OpenSidebar}
