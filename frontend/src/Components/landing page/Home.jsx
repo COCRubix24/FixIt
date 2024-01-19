@@ -16,8 +16,9 @@ const Home = () => {
         </div>
         <div className="home-text-section">
           <h1 className="primary-heading" >
-            Your Voice,</h1>
-            <h1 className="primary-heading"> Our Solution
+  Your Voice,
+</h1>
+            <h1 className="primary-heading"> Our Solution!
           </h1>
           <p className="primary-text">
           Where your concerns meet swift resolutions — a platform 

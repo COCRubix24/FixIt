@@ -1,0 +1,40 @@
+.complaint-history-container {
+    margin: 20px auto; /* Center the container */
+    max-width: 1000px; /* Set a maximum width */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-left: 100px;
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 12px; /* Increase padding for a larger table */
+    text-align: left;
+}
+.chalo {
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+/* Styling for Status column */
+td.status {
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Styling for Resolved status */
+td.status.resolved {
+    color: green;
+}
+
+/* Styling for Pending status */
+td.status.pending {
+    color: yellow;
+}
