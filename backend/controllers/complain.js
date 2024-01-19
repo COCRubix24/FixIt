@@ -104,9 +104,9 @@ export const getAllComplain = async (req, res) => {
   console.log(id);
   try {
     const complains = await Complain.find({ createdBy: id });
-    if (!complains) {
-      throw new Error("Invalid user id");
-    }
+    // if (!complains) {
+    //   throw new Error("Invalid user id");
+    // }
     res.status(200).json({ complains });
   } catch (error) {
     console.log(error);
@@ -145,6 +145,20 @@ export const updateSingleComplain = async (req, res) => {
       throw new Error("Invalid complain ID");
     }
     res.status(200).json({ complain });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getAllCompanyComplain = async (req, res) => {
+  const { id } = req.body;
+  console.log(id);
+  try {
+    const complains = await Complain.find({ companyId: id });
+    // if (!complains) {
+    //   throw new Error("Invalid user id");
+    // }
+    res.status(200).json({ complains });
   } catch (error) {
     console.log(error);
   }
