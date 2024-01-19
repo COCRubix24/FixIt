@@ -8,9 +8,9 @@ const ComplainSchema = new mongoose.Schema(
       required: true,
     },
     companyId: {
-      type: String,
-      // unique: true,
-      required: true,
+      type: mongoose.Types.ObjectId,
+      ref: "Company",
+      required: [true, "Please provide company"],
     },
     email: {
       type: String,
