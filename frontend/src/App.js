@@ -31,6 +31,7 @@ import Contactus from "./Components/Navbar/Contactus.jsx";
 import ChatEngineComponent from "./Pages/Login/ChatEngine.js";
 import CategoryPage from "./Pages/Login/dashboard for buiness/CategoryPage.js";
 import ComplaintList from "./Pages/Login/dashboard for buiness/ComplaintList.js";
+import Dept from "./Pages/Login/dashboard for buiness/Dept.js";
 
 function App() {
     return (
@@ -77,6 +78,7 @@ function App() {
                             path="/customer-seervice"
                             element={<ComplaintList />}
                         />
+                        <Route path="/dept/:index" component={Dept} />
                     </Routes>
                     <Footer />
                 </BrowserRouter>
