@@ -12,15 +12,12 @@ const CaseListsB = () => {
 
     const fetchComplaints = async () => {
         try {
-            console.log("1",Companyy);
+            console.log("1", Companyy);
             const formData = {
                 id: Companyy._id,
             };
             console.log(formData)
 
-            const response = await axios.post("http://localhost:8800/api/complain/getAllCompanyComplain", formData);
-            console.log(response.data);
-            setComplaints(response.data.complains);
         } catch (error) {
             console.error("Error fetching complaints:", error);
         }
@@ -49,7 +46,7 @@ const CaseListsB = () => {
                 </thead>
 
                 <tbody>
-                    {complaints.length>0 ? complaints.map((item, index) => (
+                    {complaints.length > 0 ? complaints.map((item, index) => (
                         <tr key={index}>
                             <td>{item._id}</td>
                             <td>{item.name ? item.name : "Anomyous"}</td>

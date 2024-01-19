@@ -78,7 +78,7 @@ const Navbar = () => {
       </div>
       <div className="chat-login-container">
     <button className="login-button">
-        <Link to="/chat">Chat</Link>
+        <Link to="/chatengine">Chat</Link>
     </button>
     {renderAuthButton()}
 </div>

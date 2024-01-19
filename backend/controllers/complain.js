@@ -172,3 +172,65 @@ export const getAllCompanyComplain = async (req, res) => {
     console.log(error);
   }
 };
+
+
+export const dashboardB = async (req, res) => {
+  const {companyId} = req.body;
+
+  try {
+    const totalComplains = await Complain.countDocuments({ companyId });
+    const resolvedComplains = await Complain.countDocuments({ companyId, status: 'resolved' });
+    const pendingComplains = await Complain.countDocuments({
+      companyId,
+      status: { $in: ['Submitted complain', 'In progress']},
+    });
+    
+    // Calculate average resolution time
+    // const resolutionTimes = await Complain.find({
+    //   companyId,
+    //   status: 'resolved',
+    //   resolutionTime: { $exists: true, $ne: null },
+    // }).select('resolutionTime');
+
+
+    const resolvedComplaints = await Complain.find({
+      companyId,
+      status: 'resolved',
+      createdAt: { $exists: true },
+      updatedAt: { $exists: true },
+    });
+
+    const resolutionTimes = resolvedComplaints.map(complaint => {
+      const createdAt = complaint.createdAt.getTime();
+      const updatedAt = complaint.updatedAt.getTime();
+      const resolutionTimeInHours = (updatedAt - createdAt) / (1000 * 60 * 60); // Convert milliseconds to hours
+      return resolutionTimeInHours;
+    });
+
+    const avgResolutionTime = resolutionTimes.reduce((sum, { resolutionTime }) => sum + resolutionTime, 0) / resolutionTimes.length;
+
+    // Department-wise data
+    const departmentWiseData = await Complain.aggregate([
+      { $match: { companyId, status: { $in: ['resolved', 'In progress'] } } },
+      {
+        $group: {
+          _id: '$department',
+          resolved: { $sum: { $cond: [{ $eq: ['$status', 'resolved'] }, 1, 0] } },
+          pending: { $sum: { $cond: [{ $eq: ['$status', 'In progress'] }, 1, 0] } },
+        },
+      },
+    ]);
+
+    res.json({
+      totalComplains,
+      resolvedComplains,
+      pendingComplains,
+      avgResolutionTime,
+      departmentWiseData,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
