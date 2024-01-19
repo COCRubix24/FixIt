@@ -1,10 +1,18 @@
 .complaint-history-container {
     margin: 20px auto; /* Center the container */
-    max-width: 1000px; /* Set a maximum width */
+   width: 1000px; /* Set a maximum width */
+    text-align: center; /* Center align text */
+}
+
+.ii{
+    font-weight: bold;
+    color:rgb(211, 158, 51);
+    text-align: center; /* Make the Complaint History text bold */
 }
 
 table {
-    width: 100%;
+   position: relative;
+   background-color: #ffd699;
     border-collapse: collapse;
     margin-top: 20px;
     margin-left: 100px;
@@ -16,11 +24,24 @@ td {
     padding: 12px; /* Increase padding for a larger table */
     text-align: left;
 }
-.chalo {
-}
 
 th {
     background-color: #f2f2f2;
+}
+
+/* Styling for alternating row colors */
+tbody tr:nth-child(odd) {
+    background-color: #ffe8cc; /* Light orange for odd rows */
+}
+
+tbody tr:nth-child(even) {
+    background-color: #ffd699; /* More light orange for even rows */
+}
+
+/* Styling for the first row with Complaint History text */
+tbody tr:first-child {
+    background-color: #ffe8cc; /* Different color for the first row */
+    color: rgb(0, 0, 0); /* Text color for the first row */
 }
 
 /* Styling for Status column */

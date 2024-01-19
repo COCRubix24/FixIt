@@ -3,7 +3,9 @@ import "./Help.css"; // Import your CSS for styling
 import Chat from "../../Components/Chat";
 // import { Link } from "@react-navigation/native";
 // import { Link } from "react-router-dom";
+import Blob from './blob.gif'
 import { UserContext } from "../../context/UserContext";
+import ContactImage from '../../assets/chat5.png'
 
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -99,10 +101,12 @@ const Help = () => {
     };
 
     return (
+        
         <div className="page-container">
+             <img src={Blob} className="blobby" />
             <div className="help-container">
                 <div className="help-content">
-                    <h2>Contact Us</h2>
+                    <h2 className="uu">CONTACT US</h2>
                     <form onSubmit={handleSubmit}>
                         <div className="form-group">
                             <label
@@ -220,6 +224,10 @@ const Help = () => {
                             Submit
                         </button>
                     </form>
+                </div>
+                <div className="additional-image-container">
+                    {/* Additional image */}
+                    <img src={ContactImage} className="additional-image" />
                 </div>
             </div>
             {showChat && (

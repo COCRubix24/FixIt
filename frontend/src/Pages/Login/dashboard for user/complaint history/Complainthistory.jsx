@@ -34,7 +34,7 @@ const ComplaintHistory = () => {
 
     return (
         <div className="complaint-history-container">
-            <h2>Complaint History</h2>
+            <h2 className="ii">Complaint History</h2>
             <table>
                 <thead>
                     <tr>
@@ -59,18 +59,7 @@ const ComplaintHistory = () => {
                                 <input type="file" />
                             </td> */}
                             <td>{item.department}</td>
-                            <td
-                                className={`status resolved ${item.status.toLowerCase() === "resolved" ? "visible" : "hidden"
-                                    }`}
-                            >
-                                Resolved
-                            </td>
-                            <td
-                                className={`status pending ${item.status.toLowerCase() === "in progress" ? "visible" : "hidden"
-                                    }`}
-                            >
-                                Pending
-                            </td>
+                            <td style={{ color: "red" }}>{item.status}</td>
                         </tr>
                     )) : "No complaints for this user"}
                 </tbody>

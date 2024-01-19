@@ -111,7 +111,7 @@ export const getAllComplain = async (req, res) => {
     const { id } = req.body;
     console.log(id);
     try {
-        const complains = await Complain.find({ createdBy: id });
+        const complains = await Complain.find({ createdBy: id }).sort("-createdAt");
         // if (!complains) {
         //   throw new Error("Invalid user id");
         // }
@@ -124,7 +124,7 @@ export const getAllComplain = async (req, res) => {
 export const getSingleComplain = async (req, res) => {
     const { complainId } = req.body;
     try {
-        const complain = await Complain.find({ _id: complainId });
+        const complain = await Complain.findOne({ _id: complainId });
         if (!complain) {
             throw new Error("Invalid Complain ID");
         }
