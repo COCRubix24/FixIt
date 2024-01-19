@@ -109,7 +109,7 @@ const Documents = () => {
 
     return (
         <div className="help-whole">
-            <img src={Blob} />
+            <img src={Blob} className="blobby" />
             <div className="documents-container">
                 <h2>File a Complaint</h2>
                 <form onSubmit={handleSubmit} className="complaint-form">
