@@ -5,7 +5,7 @@ import Sidebaruser from "./Sidebaruser";
 import Mainuser from "./Mainuser";
 import CaseLists from "./CaseLists";
 import SidebarB from "./SidebarB";
-import CaseListsB from "./CaseListsB";
+// import CaseLists from "./CaseLists";
 function CaseListP() {
     const [openSidebarToggle, setOpenSidebarToggle] = useState(false);
     const OpenSidebar = () => {
@@ -19,7 +19,9 @@ function CaseListP() {
                 openSidebarToggle={openSidebarToggle}
                 OpenSidebar={OpenSidebar}
             />
-            <CaseListsB />
+            <div className="case-lists-hai" style={{ height: "100%" }}>
+                <CaseLists />
+            </div>
         </div>
     );
 }

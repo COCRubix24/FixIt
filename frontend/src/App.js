@@ -29,6 +29,8 @@ import ComplainthistoryPage from "./Pages/Login/dashboard for user/complaint his
 import Blog from "./Components/Navbar/Blog.jsx";
 import Contactus from "./Components/Navbar/Contactus.jsx";
 import ChatEngineComponent from "./Pages/Login/ChatEngine.js";
+import CategoryPage from "./Pages/Login/dashboard for buiness/CategoryPage.js";
+import ComplaintList from "./Pages/Login/dashboard for buiness/ComplaintList.js";
 
 function App() {
     return (
@@ -69,6 +71,11 @@ function App() {
                         <Route
                             path="/chatengine"
                             element={<ChatEngineComponent />}
+                        />
+                        <Route path="/category" element={<CategoryPage />} />
+                        <Route
+                            path="/customer-seervice"
+                            element={<ComplaintList />}
                         />
                     </Routes>
                     <Footer />

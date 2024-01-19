@@ -1,6 +1,7 @@
 .complaint-history-container {
-    margin: 20px auto; /* Center the container */
-    max-width: 1000px; /* Set a maximum width */
+    height: 700px; /* Set your desired height */
+    overflow-y: auto; /* Add vertical scroll if content overflows */
+    width: 100%;
 }
 
 table {

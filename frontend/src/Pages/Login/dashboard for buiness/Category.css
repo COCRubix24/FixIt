@@ -1,0 +1,22 @@
+.square-card {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 10px;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    position: relative;
+    left: 400px;
+}
+
+.department-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #b58c34;
+    font-weight: bold;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}

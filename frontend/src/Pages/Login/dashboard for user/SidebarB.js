@@ -38,9 +38,9 @@ function SidebarB({ openSidebarToggle, OpenSidebar }) {
                     </Link>
                 </li>
                 <li className="sidebar-list-item">
-                    <a href="">
+                    <Link to="/category">
                         <BsFillGrid3X3GapFill className="icon" /> Categories
-                    </a>
+                    </Link>
                 </li>
                 <li className="sidebar-list-item">
                     <a href="">

@@ -35,10 +35,14 @@ safety_settings = [
         "threshold": "BLOCK_NONE",
     },
 ]
+
+
 def get_gemini_response(input, image, prompt):
-    model = genai.GenerativeModel('gemini-pro-vision', safety_settings=safety_settings)
+    model = genai.GenerativeModel(
+        'gemini-pro-vision', safety_settings=safety_settings)
     response = model.generate_content([input, image[0], prompt])
     return response.text
+
 
 def input_image_setup(ipfs_link):
     response = requests.get(ipfs_link)
@@ -54,9 +58,11 @@ def input_image_setup(ipfs_link):
     else:
         raise FileNotFoundError("Failed to fetch image data from IPFS")
 
+
 @app.route('/')
 def home():
     return jsonify({"hello": "world"}), 200
+
 
 @app.route('/classifyDept/', methods=['POST'])
 def generate_content():
@@ -65,9 +71,12 @@ def generate_content():
     # depts = request.json.get('depts', '')
     # image_data = input_image_setup(request.json['pinataIPFS'])
     data = request.json
-    input_prompt = data.get('input', 'I would like to register a complaint regarding my recent experience with MCD. I faced issues with the bad food. I hope you can address this matter promptly')
-    depts = data.get('depts', ["Customer Service", "Delivery", "Product Quality", "Returns", "Technical Support", "Billing"])
-    image = data.get('pinataIPFS', '[{"key":"pinataIPFS","value":"https://ipfs.io/ipfs/QmWcwrMBCYEFUotUogeFVgYj5ACWE9GrLQ3r5a81Pjhu3x","description":"","type":"text","enabled":true}]')
+    input_prompt = data.get(
+        'input', 'I would like to register a complaint regarding my recent experience with MCD. I faced issues with the bad food. I hope you can address this matter promptly')
+    depts = data.get('depts', ["Customer Service", "Delivery",
+                     "Product Quality", "Returns", "Technical Support", "Billing"])
+    image = data.get(
+        'pinataIPFS', '[{"key":"pinataIPFS","value":"https://ipfs.io/ipfs/QmWcwrMBCYEFUotUogeFVgYj5ACWE9GrLQ3r5a81Pjhu3x","description":"","type":"text","enabled":true}]')
     image_data = input_image_setup("https://ipfs.io/ipfs/" + image)
 
     # print(image_data)
@@ -77,7 +86,8 @@ def generate_content():
     )
 
     try:
-        response = get_gemini_response(input_prompt, image_data, predefined_text)
+        response = get_gemini_response(
+            input_prompt, image_data, predefined_text)
         print(response)
 
         # Assuming response is a string separated by semicolons
@@ -94,6 +104,7 @@ def generate_content():
     except Exception as e:
         print(e)
         return jsonify({"error": str(e)}), 500
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

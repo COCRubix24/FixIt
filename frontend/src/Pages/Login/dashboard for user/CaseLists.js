@@ -19,7 +19,10 @@ const ComplaintHistory = () => {
             };
             // console.log(formData)
 
-            const response = await axios.post("http://localhost:8800/api/complain/getAllComplain", formData);
+            const response = await axios.post(
+                "http://localhost:8800/api/complain/getAllComplain",
+                formData
+            );
             console.log(response.data);
             setComplaints(response.data.complains);
         } catch (error) {
@@ -31,11 +34,13 @@ const ComplaintHistory = () => {
         fetchComplaints();
     }, [userr]);
 
-
     return (
-        <div className="complaint-history-container">
-            <h2>Complaint History</h2>
-            <table>
+        <div
+            className="complaint-history-container"
+            style={{ height: "700px" }}
+        >
+            {/* <h2>Complaint History</h2> */}
+            <table style={{ height: "700px" }}>
                 <thead>
                     <tr>
                         <th>Complaint Id</th>
@@ -49,30 +54,40 @@ const ComplaintHistory = () => {
                 </thead>
 
                 <tbody>
-                    {complaints ? complaints.map((item, index) => (
-                        <tr key={index}>
-                            <td>{item._id}</td>
-                            <td>{item.companyName}</td>
-                            <td>{item.description}</td>
-                            <td>{item.createdAt}</td>
-                            {/* <td>
+                    {complaints
+                        ? complaints.map((item, index) => (
+                              <tr key={index}>
+                                  <td>{item._id}</td>
+                                  <td>{item.companyName}</td>
+                                  <td>{item.description}</td>
+                                  <td>{item.createdAt}</td>
+                                  {/* <td>
                                 <input type="file" />
                             </td> */}
-                            <td>{item.department}</td>
-                            <td
-                                className={`status resolved ${item.status.toLowerCase() === "resolved" ? "visible" : "hidden"
-                                    }`}
-                            >
-                                Resolved
-                            </td>
-                            <td
-                                className={`status pending ${item.status.toLowerCase() === "in progress" ? "visible" : "hidden"
-                                    }`}
-                            >
-                                Pending
-                            </td>
-                        </tr>
-                    )) : "No complaints for this user"}
+                                  <td>{item.department}</td>
+                                  <td
+                                      className={`status resolved ${
+                                          item.status.toLowerCase() ===
+                                          "resolved"
+                                              ? "visible"
+                                              : "hidden"
+                                      }`}
+                                  >
+                                      Resolved
+                                  </td>
+                                  <td
+                                      className={`status pending ${
+                                          item.status.toLowerCase() ===
+                                          "in progress"
+                                              ? "visible"
+                                              : "hidden"
+                                      }`}
+                                  >
+                                      Pending
+                                  </td>
+                              </tr>
+                          ))
+                        : "No complaints for this user"}
                 </tbody>
             </table>
         </div>

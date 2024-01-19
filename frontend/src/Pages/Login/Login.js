@@ -44,8 +44,8 @@ const Login = () => {
         };
         console.log(formData);
         let data = {
-            "username": name1,
-            "secret": password1,
+            username: name1,
+            secret: password1,
             // "email": "b_baker@mail.com",
             // "first_name": "Bob",
             // "last_name": "Baker",
@@ -53,12 +53,12 @@ const Login = () => {
         };
 
         let config = {
-            method: 'post',
-            url: 'https://api.chatengine.io/users/',
+            method: "post",
+            url: "https://api.chatengine.io/users/",
             headers: {
-                'PRIVATE-KEY': "f85dcad6-4829-4abd-9b92-763858c7492b"
+                "PRIVATE-KEY": "f85dcad6-4829-4abd-9b92-763858c7492b",
             },
-            data: data
+            data: data,
         };
 
         axios(config)
@@ -68,9 +68,9 @@ const Login = () => {
             .catch(function (error) {
                 console.log(error);
             });
-        await localStorage.setItem('userr', JSON.stringify(data));
+        await localStorage.setItem("userr", JSON.stringify(data));
 
-        console.log("one part done")
+        console.log("one part done");
         try {
             const response = await axios.post(
                 "http://localhost:8800/api/auth/register",
@@ -107,7 +107,6 @@ const Login = () => {
             password: password,
         };
 
-
         try {
             const response = await axios.post(
                 "http://localhost:8800/api/auth/login",
@@ -119,8 +118,8 @@ const Login = () => {
             );
 
             checkUserLoggedIn();
-            console.log("Login succesful");
-            navigate("/dashboarduser");
+            alert("Login succesful");
+            navigate("/");
         } catch (error) {
             console.error(error.response);
         }
