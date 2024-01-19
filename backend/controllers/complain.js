@@ -1,4 +1,4 @@
-import cloudinary from "../config/cloudinary.js"; // Import the Cloudinary configuration
+import cloudinary from "../config/cloudinary.js";
 import Complain from "../models/Complain.js";
 import { StatusCodes } from "http-status-codes";
 import Company from "../models/Company.js";
@@ -155,6 +155,7 @@ export const getAllCompanyComplain = async (req, res) => {
   console.log(id);
   try {
     const complains = await Complain.find({ companyId: id });
+    console.log("2", complains)
     // if (!complains) {
     //   throw new Error("Invalid user id");
     // }
