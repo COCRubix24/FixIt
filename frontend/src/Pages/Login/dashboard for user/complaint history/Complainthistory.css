@@ -1,6 +1,6 @@
 .complaint-history-container {
     margin: 20px auto; /* Center the container */
-    max-width: 1000px; /* Set a maximum width */
+   width: 1000px; /* Set a maximum width */
     text-align: center; /* Center align text */
 }
 
@@ -40,8 +40,8 @@ tbody tr:nth-child(even) {
 
 /* Styling for the first row with Complaint History text */
 tbody tr:first-child {
-    background-color: #66b3ff; /* Different color for the first row */
-    color: white; /* Text color for the first row */
+    background-color: #ffe8cc; /* Different color for the first row */
+    color: rgb(0, 0, 0); /* Text color for the first row */
 }
 
 /* Styling for Status column */

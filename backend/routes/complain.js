@@ -11,7 +11,7 @@ import {
 
 router.post("/createComplain", createComplain);
 router.post("/getAllComplain", getAllComplain);
-router.get("/getSingleComplain", getSingleComplain);
+router.post("/getSingleComplain", getSingleComplain);
 router.patch("/updateSingleComplain", updateSingleComplain);
 
 router.post("/getAllCompanyComplain", getAllCompanyComplain);

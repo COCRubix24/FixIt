@@ -59,18 +59,7 @@ const ComplaintHistory = () => {
                                 <input type="file" />
                             </td> */}
                             <td>{item.department}</td>
-                            <td
-                                className={`status resolved ${item.status.toLowerCase() === "resolved" ? "visible" : "hidden"
-                                    }`}
-                            >
-                                Resolved
-                            </td>
-                            <td
-                                className={`status pending ${item.status.toLowerCase() === "in progress" ? "visible" : "hidden"
-                                    }`}
-                            >
-                                Pending
-                            </td>
+                            <td style={{ color: "red" }}>{item.status}</td>
                         </tr>
                     )) : "No complaints for this user"}
                 </tbody>
