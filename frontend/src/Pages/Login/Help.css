@@ -1,22 +1,38 @@
 /* Help.css */
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Brygada+1918&family=Cormorant+Garamond:wght@300&family=DM+Serif+Display&family=IBM+Plex+Serif:wght@700&family=Instrument+Serif&family=Oswald:wght@300&family=Playfair+Display:wght@400;600&family=Roboto+Slab&family=Young+Serif&display=swap');
 
 .page-container {
-    max-width: 800px;
+    max-width: 2000px;
     margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
 }
 
+
 .help-container {
+    display: flex;
+    width:700px;
     background-color: #fff;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    /* Adding box shadow */
     border-radius: 8px;
+    overflow: hidden; /* To ensure the box shadow doesn't get cut off */
+    position: relative;
+   top:5px;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+   /* To position the blob image correctly */
 }
 
 .help-content {
     padding: 20px;
 }
 
-h2 {
+.uu {
     color: #fd9d17;
+    font-family: 'Brygada 1918', serif;
+    text-align: center;
+    font-family: BOLD;
 }
 
 form {
@@ -63,4 +79,23 @@ form {
 
 .help-form-button:hover {
     background-color: #ffb848;
+}
+.blobbyi {
+    z-index: -1;
+    position: absolute;
+    top: 2000px;
+    right:5000px;
+    
+    opacity: 0.7;
+}
+.additional-image-container {
+    flex: 1;
+    position: relative;
+    top:70px;
+    left:50px;
+}
+
+.additional-image {
+    width: 65%;
+    height: auto;
 }

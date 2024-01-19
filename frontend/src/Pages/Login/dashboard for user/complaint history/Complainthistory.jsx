@@ -34,7 +34,7 @@ const ComplaintHistory = () => {
 
     return (
         <div className="complaint-history-container">
-            <h2>Complaint History</h2>
+            <h2 className="ii">Complaint History</h2>
             <table>
                 <thead>
                     <tr>
