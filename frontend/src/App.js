@@ -78,7 +78,7 @@ function App() {
                             path="/customer-seervice"
                             element={<ComplaintList />}
                         />
-                        <Route path="/dept/:index" component={Dept} />
+                        <Route path="/dept/:index" element={<Dept />} />
                     </Routes>
                     <Footer />
                 </BrowserRouter>

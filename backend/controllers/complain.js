@@ -211,16 +211,29 @@ export const dashboardB = async (req, res) => {
 
     // Department-wise data
     const departmentWiseData = await Complain.aggregate([
-      { $match: { companyId, status: { $in: ['resolved', 'In progress'] } } },
+      { 
+        $match: { 
+          companyId, 
+          status: { $in: ['resolved', 'In progress', 'Submitted complain'] } 
+        } 
+      },
       {
         $group: {
           _id: '$department',
           resolved: { $sum: { $cond: [{ $eq: ['$status', 'resolved'] }, 1, 0] } },
-          pending: { $sum: { $cond: [{ $eq: ['$status', 'In progress'] }, 1, 0] } },
+          pending: { 
+            $sum: { 
+              $cond: [
+                { $in: ['$status', ['In progress', 'Submitted complain']] },
+                1,
+                0
+              ] 
+            }
+          },
         },
       },
     ]);
-
+    
     res.json({
       totalComplains,
       resolvedComplains,
@@ -234,3 +247,19 @@ export const dashboardB = async (req, res) => {
   }
 };
 
+export const getComplaintsByDepartment = async (req, res) => {
+  const { companyId, department } = req.body;
+
+  try {
+      // Fetch complaints based on companyId and department
+      const complaints = await Complain.find({
+          companyId,
+          department,
+      });
+
+      res.status(201).json(complaints);
+  } catch (error) {
+      console.error("Error fetching complaints by department:", error);
+      res.status(500).json({ error: "Internal Server Error" });
+  }
+};

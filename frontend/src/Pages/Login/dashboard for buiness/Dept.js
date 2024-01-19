@@ -1,34 +1,58 @@
-// Dept.js
-
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import axios from "axios";
+import { CompanyContext } from "../../../context/CompanyContext";
+import { useContext } from "react";
 
-const Dept = ({ complaints }) => {
+const Dept = () => {
+    const { isLoggedInC, Companyy, checkCompanyLoggedIn, handleLogout2 } =
+        useContext(CompanyContext);
+
     const { index } = useParams();
-    const [complaint, setComplaint] = useState(null);
+    const [complaints, setComplaints] = useState([]);
 
     useEffect(() => {
-        const fetchComplaintByIndex = async () => {
-            try {
-                if (complaints && complaints.length > 0) {
-                    setComplaint(complaints[Number(index)]);
-                }
-            } catch (error) {
-                console.error("Error fetching complaint by index:", error);
-            }
-        };
-
         fetchComplaintByIndex();
-    }, [index, complaints]);
+    }, [Companyy?._id]);
+
+    const fetchComplaintByIndex = async () => {
+        try {
+            const formData = {
+                companyId: Companyy._id,
+                department: Companyy.departments[index],
+            };
+
+            const response = await axios.post(
+                "http://localhost:8800/api/complain/department",
+                formData
+            );
+
+            console.log(response.data);
+            setComplaints(response.data);
+        } catch (error) {
+            console.error("Error fetching complaint by index:", error);
+        }
+    };
 
     return (
         <div>
-            {complaint ? (
+            {Companyy ? (
                 <div>
-                    <h2>{complaint.department} Department Details</h2>
-                    {/* Display other complaint details here */}
-                    <p>User: {complaint.user}</p>
-                    {/* Add more details as needed */}
+                    <h2>{Companyy.departments[index]} Department Details</h2>
+                    {/* Map and display complaints */}
+                    {complaints.length > 0 ? (
+                        <ul>
+                            {complaints.map((complaint, complaintIndex) => (
+                                <li key={complaintIndex}>
+                                    {/* Display complaint details here */}
+                                    <p>Name: {complaint.name}</p>
+                                    {/* Add more details as needed */}
+                                </li>
+                            ))}
+                        </ul>
+                    ) : (
+                        <p>No complaints found for this department.</p>
+                    )}
                 </div>
             ) : (
                 <p>Loading...</p>

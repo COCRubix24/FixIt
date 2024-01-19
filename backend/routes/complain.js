@@ -7,7 +7,8 @@ import {
   getSingleComplain,
   updateSingleComplain,
   getAllCompanyComplain,
-  dashboardB
+  dashboardB,
+  getComplaintsByDepartment
 } from "../controllers/complain.js";
 
 router.post("/createComplain", createComplain);
@@ -18,5 +19,6 @@ router.patch("/updateSingleComplain", updateSingleComplain);
 router.post("/getAllCompanyComplain", getAllCompanyComplain);
 
 router.post("/dashboardB", dashboardB);
+router.post("/department", getComplaintsByDepartment);
 
 export default router;

@@ -13,12 +13,12 @@ function Mainuser() {
     useContext(CompanyContext);
 
   const [dashboardData, setDashboardData] = useState({
-    totalComplaints: 0,
-    resolvedComplaints: 0,
-    pendingComplaints: 0,
-    averageResolutionTime: 0,
-    categoryData: [],
-    trendData: [],
+    // totalComplaints: 0,
+    // resolvedComplaints: 0,
+    // pendingComplaints: 0,
+    // averageResolutionTime: 0,
+    // categoryData: [],
+    // trendData: [],
   });
 
   useEffect(() => {
