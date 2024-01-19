@@ -19,11 +19,21 @@ const Navbar = () => {
   const isLoginPage = location.pathname === '/login';
 
   const renderAuthButton = () => {
-    if (isLoggedIn || isLoggedInC) {
+    if (isLoggedIn) {
       return (
         <div className="ml-auto">
           {isLoginPage ? null : (
             <button onClick={handleLogout} className="login-button">
+              <Link to="/">Sign out</Link>
+            </button>
+          )}
+        </div>
+      );
+    }else if (isLoggedInC) {
+      return (
+        <div className="ml-auto">
+          {isLoginPage ? null : (
+            <button onClick={handleLogout2} className="login-button">
               <Link to="/">Sign out</Link>
             </button>
           )}
