@@ -125,7 +125,7 @@ const LoginB = () => {
 
             console.log(formData);
             console.log("Login succesful");
-            navigate("/dashb");
+            navigate("/dashboardbusiness");
         } catch (error) {
             console.log(formData);
             console.error(error.response);

@@ -1,0 +1,31 @@
+/* Add this CSS to your component or import it from an external stylesheet */
+
+.complaint-container {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 20px;
+   align-items: center;
+}
+
+.complaint-box {
+   border: 1px solid #ccc;
+   margin-left: 400px;
+   margin-bottom: 40px;
+   border-radius: 8px;
+   padding: 15px;
+   width: 800px;
+   /* Set the width as needed */
+   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+   background-color: #fff;
+   transition: transform 0.2s ease-in-out;
+
+   &:hover {
+      transform: scale(1.05);
+   }
+
+   p {
+      margin: 8px 0;
+   }
+
+   /* Add more styling as needed */
+}

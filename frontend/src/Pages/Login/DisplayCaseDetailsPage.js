@@ -27,7 +27,7 @@ const DisplayCaseDetailsPage = () => {
         setResolved(true);
     };
     const handleDashClick = () => {
-        navigate("/caselists");
+        navigate("/dashboarduser");
     };
 
     return (

@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { CompanyContext } from "../../../context/CompanyContext";
 import { useContext } from "react";
+import './Dept.css';
 
 const Dept = () => {
     const { isLoggedInC, Companyy, checkCompanyLoggedIn, handleLogout2 } =
@@ -41,15 +42,30 @@ const Dept = () => {
                     <h2>{Companyy.departments[index]} Department Details</h2>
                     {/* Map and display complaints */}
                     {complaints.length > 0 ? (
-                        <ul>
+                        <div className="complaint-container">
                             {complaints.map((complaint, complaintIndex) => (
-                                <li key={complaintIndex}>
-                                    {/* Display complaint details here */}
-                                    <p>Name: {complaint.name}</p>
-                                    {/* Add more details as needed */}
-                                </li>
+                                <div key={complaintIndex} className="complaint-box">
+                                    <p>Company Name: {complaint.companyName}</p>
+                                    {complaint.email && (
+                                        <>
+                                            <p>Email: {complaint.email}</p>
+                                            <p>Name: {complaint.name}</p>
+                                            <p>Phone: {complaint.phone}</p>{" "}
+                                        </>
+                                    )}
+                                    <p>Created By: {complaint.createdBy}</p>
+                                    <p>Pinata IPFS: {complaint.pinataIPFS}</p>
+                                    <p>Preferred Language: {complaint.preferedLanguage}</p>
+                                    <p>
+                                        Preferred Contact Method: {complaint.preferedContactMethod}
+                                    </p>
+                                    <p>Status: {complaint.status}</p>
+                                    <p>Description: {complaint.description}</p>
+                                    <p>Department: {complaint.department}</p>
+                                    <p>Keywords: {complaint.keywords}</p>
+                                </div>
                             ))}
-                        </ul>
+                        </div>
                     ) : (
                         <p>No complaints found for this department.</p>
                     )}
@@ -60,5 +76,4 @@ const Dept = () => {
         </div>
     );
 };
-
 export default Dept;

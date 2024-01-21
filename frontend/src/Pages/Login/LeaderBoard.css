@@ -1,0 +1,95 @@
+/* Update your Leaderboard.css with these styles */
+
+.whole-container {
+    width: 2000px;
+    /* display: flex; */
+}
+
+.leaderboard-container {
+    max-width: 1000px;
+    margin: 20px 350px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    /* float: right; */
+}
+
+.company-heading {
+    color: #333;
+    font-size: 50px;
+    margin-bottom: 16px;
+    font-weight: 500;
+}
+
+.company-list {
+    list-style: none;
+    padding: 0;
+}
+
+.larger-text {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.company-item {
+    margin-bottom: 16px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.company-item span {
+    margin-right: 10px; /* Adjust as needed */
+}
+/* .company-item span {
+    margin-bottom: 8px;
+} */
+.company-item:hover {
+    background-color: #e6e6e6;
+    transition: background-color 0.3s ease-in-out;
+}
+
+/* Alternate background colors for even and odd items */
+.company-item:nth-child(even) {
+    background-color: #f4ffad;
+}
+
+.company-item:nth-child(odd) {
+    background-color: #f0faff;
+}
+
+.none {
+    color: #777;
+}
+
+/* Styles for potential scams */
+.potential-scams-list {
+    margin-top: 20px;
+}
+
+.star-twinkle {
+    position: absolute;
+    width: 100px;
+    top: 9%;
+    left: 15%;
+}
+
+.cup-short {
+    position: absolute;
+    width: 300px;
+    top: 25%;
+    left: 0px;
+    /* transform: rotate(45deg); */
+}
+
+.potential-scam-item {
+    color: #e74c3c;
+    font-weight: bold;
+    margin-bottom: 16px;
+}

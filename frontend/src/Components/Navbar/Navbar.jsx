@@ -29,7 +29,7 @@ const Navbar = () => {
           )}
         </div>
       );
-    }else if (isLoggedInC) {
+    } else if (isLoggedInC) {
       return (
         <div className="ml-auto">
           {isLoginPage ? null : (
@@ -57,32 +57,33 @@ const Navbar = () => {
       <div className="logo-links">
         <h2>
           <Link to="/" style={{ textDecoration: 'none', color: 'orange' }}>
-            <img src={Logo} alt="" srcset="" style={{width :'12rem'}}/>
+            <img src={Logo} alt="" srcset="" style={{ width: '12rem' }} />
           </Link>
         </h2>
         <ul className="navitems">
           <Navbarlist />
+          <div id="google_translate_element"></div>
           {/* <li>
             <a href="http://localhost:8000" target="_blank" style={{ textDecoration: 'none', color: 'white' }}>
               Chatbot
             </a>
           </li> */}
           {/* Add search input with icon */}
-          <li className="hehehe">
-{/*             
+          {/* <li className="hehehe"> */}
+            {/*             
             <input  type="text" placeholder="Search...." className="search-input" /> */}
-            
+
             {/* <FontAwesomeIcon icon={faSearch} className="search-icon" /> */}
-          </li>
+          {/* </li> */}
         </ul>
       </div>
       <div className="chat-login-container">
-    <button className="login-button">
-        <Link to="/chatengine">Chat</Link>
-    </button>
-    {renderAuthButton()}
-</div>
-</nav>
+        <button className="login-button">
+          <Link to="/chatengine">Chat</Link>
+        </button>
+        {renderAuthButton()}
+      </div>
+    </nav>
   );
 };
 

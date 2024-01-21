@@ -32,13 +32,13 @@ const Categories = () => {
     return (
         <div className="categories-grid">
             {Companyy.departments.map((department, index) => (
-                <Link key={index} to={`/dept/${index}`}>
-                    <div className="square-card">
+                <div className="square-card">
+                    <Link className="text-none" key={index} to={`/dept/${index}`}>
                         <div className="department-card">
                             {department}
                         </div>
-                    </div>
-                </Link>
+                    </Link>
+                </div>
             ))}
         </div>
     );

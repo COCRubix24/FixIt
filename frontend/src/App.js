@@ -32,7 +32,7 @@ import ChatEngineComponent from "./Pages/Login/ChatEngine.js";
 import CategoryPage from "./Pages/Login/dashboard for buiness/CategoryPage.js";
 import ComplaintList from "./Pages/Login/dashboard for buiness/ComplaintList.js";
 import Dept from "./Pages/Login/dashboard for buiness/Dept.js";
-
+import Leaderboard from "./Pages/Login/LeaderBoard.js";
 function App() {
     return (
         <UserProvider>
@@ -79,6 +79,7 @@ function App() {
                             element={<ComplaintList />}
                         />
                         <Route path="/dept/:index" element={<Dept />} />
+                        <Route path="/leaderboard" element={<Leaderboard />} />
                     </Routes>
                     <Footer />
                 </BrowserRouter>

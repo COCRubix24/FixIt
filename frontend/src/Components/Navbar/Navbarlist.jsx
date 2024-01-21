@@ -42,11 +42,17 @@ const Navbarlist = () => {
       icon: faNewspaper,
     },
     {
-      title: "B2B services",
-      url: "/",
+      title: "Leaderboard",
+      url: "/leaderboard",
       cName: "Navlinks",
       // icon: faEnvelope,
     },
+    // {
+    //   title: "B2B services",
+    //   url: "/",
+    //   cName: "Navlinks",
+    //   // icon: faEnvelope,
+    // },
     
   ];
   return (
