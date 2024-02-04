@@ -78,7 +78,7 @@ export const createComplain = async (req, res) => {
         input: description, // Provide the appropriate input data
         depts: company.departments, // Provide the appropriate departments data
         pinataIPFS: pinataIPFS, // Assuming you want to include pinataIPFS in the request
-      }
+      },
     );
     console.log(flaskApiResponse.data);
 
@@ -100,10 +100,12 @@ export const createComplain = async (req, res) => {
       html: `<html><h1>Company - ${complain.companyName}</h1><h5>Company ID - ${complain.companyId}</h5><h2>${complain.name}</h2><p>To view the receipt copy and paste - https://ipfs.io/ipfs/${complain.pinataIPFS}</p></html>`,
     };
     const sendGridInfo = await sgMail.send(msg);
-    res.status(201).json({ complain });
+    res.status(StatusCodes.CREATED).json({ complain });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: error.message });
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ error: error.message });
   }
 };
 
@@ -115,7 +117,7 @@ export const getAllComplain = async (req, res) => {
     // if (!complains) {
     //   throw new Error("Invalid user id");
     // }
-    res.status(200).json({ complains });
+    res.status(StatusCodes.OK).json({ complains });
   } catch (error) {
     console.log(error);
   }
@@ -128,7 +130,7 @@ export const getSingleComplain = async (req, res) => {
     if (!complain) {
       throw new Error("Invalid Complain ID");
     }
-    res.status(200).json({ complain });
+    res.status(StatusCodes.OK).json({ complain });
   } catch (error) {
     console.log(error);
   }
@@ -147,12 +149,12 @@ export const updateSingleComplain = async (req, res) => {
       },
       {
         new: true,
-      }
+      },
     );
     if (!complain) {
       throw new Error("Invalid complain ID");
     }
-    res.status(200).json({ complain });
+    res.status(StatusCodes.OK).json({ complain });
   } catch (error) {
     console.log(error);
   }
@@ -167,22 +169,24 @@ export const getAllCompanyComplain = async (req, res) => {
     // if (!complains) {
     //   throw new Error("Invalid user id");
     // }
-    res.status(200).json({ complains });
+    res.status(StatusCodes.OK).json({ complains });
   } catch (error) {
     console.log(error);
   }
 };
-
 
 export const dashboardB = async (req, res) => {
   const { companyId } = req.body;
 
   try {
     const totalComplains = await Complain.countDocuments({ companyId });
-    const resolvedComplains = await Complain.countDocuments({ companyId, status: 'resolved' });
+    const resolvedComplains = await Complain.countDocuments({
+      companyId,
+      status: "resolved",
+    });
     const pendingComplains = await Complain.countDocuments({
       companyId,
-      status: { $in: ['Submitted complain', 'In progress'] },
+      status: { $in: ["Submitted complain", "In progress"] },
     });
 
     // Calculate average resolution time
@@ -192,43 +196,48 @@ export const dashboardB = async (req, res) => {
     //   resolutionTime: { $exists: true, $ne: null },
     // }).select('resolutionTime');
 
-
     const resolvedComplaints = await Complain.find({
       companyId,
-      status: 'resolved',
+      status: "resolved",
       createdAt: { $exists: true },
       updatedAt: { $exists: true },
     });
 
-    const resolutionTimes = resolvedComplaints.map(complaint => {
+    const resolutionTimes = resolvedComplaints.map((complaint) => {
       const createdAt = complaint.createdAt.getTime();
       const updatedAt = complaint.updatedAt.getTime();
       const resolutionTimeInHours = (updatedAt - createdAt) / (1000 * 60 * 60); // Convert milliseconds to hours
       return resolutionTimeInHours;
     });
 
-    const avgResolutionTime = resolutionTimes.reduce((sum, { resolutionTime }) => sum + resolutionTime, 0) / resolutionTimes.length;
+    const avgResolutionTime =
+      resolutionTimes.reduce(
+        (sum, { resolutionTime }) => sum + resolutionTime,
+        0,
+      ) / resolutionTimes.length;
 
     // Department-wise data
     const departmentWiseData = await Complain.aggregate([
       {
         $match: {
           companyId,
-          status: { $in: ['resolved', 'In progress', 'Submitted complain'] }
-        }
+          status: { $in: ["resolved", "In progress", "Submitted complain"] },
+        },
       },
       {
         $group: {
-          _id: '$department',
-          resolved: { $sum: { $cond: [{ $eq: ['$status', 'resolved'] }, 1, 0] } },
+          _id: "$department",
+          resolved: {
+            $sum: { $cond: [{ $eq: ["$status", "resolved"] }, 1, 0] },
+          },
           pending: {
             $sum: {
               $cond: [
-                { $in: ['$status', ['In progress', 'Submitted complain']] },
+                { $in: ["$status", ["In progress", "Submitted complain"]] },
                 1,
-                0
-              ]
-            }
+                0,
+              ],
+            },
           },
         },
       },
@@ -243,7 +252,9 @@ export const dashboardB = async (req, res) => {
     });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ error: "Internal Server Error" });
   }
 };
 
@@ -257,9 +268,11 @@ export const getComplaintsByDepartment = async (req, res) => {
       department,
     });
 
-    res.status(201).json(complaints);
+    res.status(StatusCodes.CREATED).json(complaints);
   } catch (error) {
     console.error("Error fetching complaints by department:", error);
-    res.status(500).json({ error: "Internal Server Error" });
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ error: "Internal Server Error" });
   }
 };

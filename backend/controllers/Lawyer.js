@@ -1,5 +1,6 @@
+import { StatusCodes } from "http-status-codes";
+import cloudinary from "../config/cloudinary.js"; // Import the Cloudinary configuration
 import Lawyer from "../models/Lawyer.js";
-import cloudinary from '../config/cloudinary.js'; // Import the Cloudinary configuration
 
 export const createLawyer = async (req, res, next) => {
   const { email, name, phone, yearOfExperience } = req.body;
@@ -8,7 +9,9 @@ export const createLawyer = async (req, res, next) => {
 
   try {
     // Upload profileImage to Cloudinary
-    const profileImageResult = await cloudinary.uploader.upload(profileImage.path);
+    const profileImageResult = await cloudinary.uploader.upload(
+      profileImage.path,
+    );
 
     // Upload idCard to Cloudinary
     const idCardResult = await cloudinary.uploader.upload(idCard.path);
@@ -27,19 +30,20 @@ export const createLawyer = async (req, res, next) => {
     });
 
     const savedLawyer = await newLawyer.save();
-    res.status(200).json(savedLawyer);
+    res.status(StatusCodes.OK).json(savedLawyer);
   } catch (err) {
     next(err);
   }
 };
-
 
 export const deleteLawyer = async (req, res, next) => {
   try {
     const lawyer = await Lawyer.findById(req.params.id);
 
     if (!lawyer) {
-      return res.status(404).json({ error: "Lawyer not found." });
+      return res
+        .status(StatusCodes.NOT_FOUND)
+        .json({ error: "Lawyer not found." });
     }
 
     // Delete images from Cloudinary using public_ids
@@ -49,24 +53,26 @@ export const deleteLawyer = async (req, res, next) => {
     // Delete lawyer from MongoDB
     await lawyer.remove();
 
-    res.status(200).json({ message: "Lawyer has been deleted." });
+    res.status(StatusCodes.OK).json({ message: "Lawyer has been deleted." });
   } catch (err) {
     next(err);
   }
 };
-
-
 
 export const getLawyer = async (req, res, next) => {
   try {
     const lawyer = await Lawyer.findById(req.params.id);
 
     if (!lawyer) {
-      return res.status(404).json({ error: "Lawyer not found." });
+      return res
+        .status(StatusCodes.NOT_FOUND)
+        .json({ error: "Lawyer not found." });
     }
 
     // Retrieve the image URLs from Cloudinary
-    const profileImage = await cloudinary.url(lawyer.profileImage, { secure: true });
+    const profileImage = await cloudinary.url(lawyer.profileImage, {
+      secure: true,
+    });
     const idCard = await cloudinary.url(lawyer.idCard, { secure: true });
 
     // Create a new lawyer object with image URLs
@@ -76,12 +82,11 @@ export const getLawyer = async (req, res, next) => {
       idCard,
     };
 
-    res.status(200).json(lawyerWithImages);
+    res.status(StatusCodes.OK).json(lawyerWithImages);
   } catch (err) {
     next(err);
   }
 };
-
 
 export const getLawyers = async (req, res, next) => {
   const { city } = req.query;
@@ -96,14 +101,20 @@ export const getLawyers = async (req, res, next) => {
     const lawyers = await query.exec();
 
     if (lawyers.length === 0) {
-      return res.status(404).json({ error: "No lawyers found." });
+      return res
+        .status(StatusCodes.NOT_FOUND)
+        .json({ error: "No lawyers found." });
     }
 
     const lawyersWithImages = await Promise.all(
       lawyers.map(async (lawyer) => {
         // Construct Cloudinary URLs using public IDs
-        const profileImage = await cloudinary.url(lawyer.profileImagePublicId, { secure: true });
-        const idCard = await cloudinary.url(lawyer.idCardPublicId, { secure: true });
+        const profileImage = await cloudinary.url(lawyer.profileImagePublicId, {
+          secure: true,
+        });
+        const idCard = await cloudinary.url(lawyer.idCardPublicId, {
+          secure: true,
+        });
 
         // Create a new lawyer object with image URLs
         return {
@@ -111,17 +122,17 @@ export const getLawyers = async (req, res, next) => {
           profileImage,
           idCard,
         };
-      })
+      }),
     );
 
-    res.status(200).json(lawyersWithImages);
+    res.status(StatusCodes.OK).json(lawyersWithImages);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'An error occurred' });
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ error: "An error occurred" });
   }
 };
-
-
 
 // export const getLawyers = async (req, res, next) => {
 //   const { city } = req.query;

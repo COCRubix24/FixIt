@@ -14,7 +14,7 @@ export const registerCompany = async (req, res, next) => {
     if (existingUser) {
       console.log("exist");
       return res
-        .status(409)
+        .status(StatusCodes.CONFLICT)
         .json({ error: "User with this email already exists." });
     }
 
@@ -25,7 +25,7 @@ export const registerCompany = async (req, res, next) => {
       password: hash,
     });
     await newCompany.save();
-    res.status(200).json({ newCompany });
+    res.status(StatusCodes.OK).json({ newCompany });
   } catch (err) {
     next(err);
   }
@@ -39,7 +39,7 @@ export const loginCompany = async (req, res, next) => {
 
     const isPasswordCorrect = await bcrypt.compare(
       req.body.password,
-      user.password
+      user.password,
     );
     if (!isPasswordCorrect) return next(createError(400, "Wrong password"));
 
@@ -53,7 +53,7 @@ export const loginCompany = async (req, res, next) => {
       process.env.JWT,
       {
         expiresIn: "30d",
-      }
+      },
     );
 
     const { password, ...companyy } = user._doc;
@@ -63,7 +63,10 @@ export const loginCompany = async (req, res, next) => {
       httpOnly: false,
     };
 
-    res.status(200).cookie("access_token_company", token, option).json(companyy);
+    res
+      .status(StatusCodes.OK)
+      .cookie("access_token_company", token, option)
+      .json(companyy);
   } catch (err) {
     next(err);
   }
@@ -106,9 +109,11 @@ export const companyVerification = (req, res, next) => {
 export const logout = async (req, res) => {
   try {
     res.cookie("access_token_company", " ", { expires: new Date(0) });
-    res.status(200).json({ message: "Logout successful" });
+    res.status(StatusCodes.OK).json({ message: "Logout successful" });
   } catch (error) {
     console.error("Error during logout:", error);
-    res.status(500).json({ error: "Internal Server Error" });
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ error: "Internal Server Error" });
   }
 };
