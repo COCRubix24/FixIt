@@ -42,7 +42,7 @@ mongoose.connection.on("connected", () => {
   console.log("mongodb connected");
 });
 
-app.get("/", (req, res) => {
+app.get("/", (_, res) => {
   res.send("Hello");
 });
 
@@ -58,7 +58,7 @@ app.use("/api/company", companyRouter);
 app.use("/api/contact", contactRoute);
 app.use("/api/ocr", ocrRoute);
 
-app.use((err, req, res, next) => {
+app.use((err, _, res, _) => {
   const errorStatus = err.status || 500;
   const errorMessage = err.message || "Something went wrong";
   return res.status(errorStatus).json({

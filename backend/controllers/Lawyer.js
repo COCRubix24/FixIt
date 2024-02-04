@@ -79,7 +79,7 @@ export const getLawyer = async (req, res, next) => {
   }
 };
 
-export const getLawyers = async (req, res, next) => {
+export const getLawyers = async (req, res, _) => {
   const { city } = req.query;
 
   try {

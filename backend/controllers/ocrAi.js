@@ -15,10 +15,9 @@ function fileToGenerativePart(path) {
   };
 }
 
-export const extraction = async (req, res) => {
+export const extraction = async (_, res) => {
   try {
     const model = genAI.getGenerativeModel({ model: "gemini-pro-vision" });
-
     const prompt = `Retrieve all the informations from above image , return it in json format with following details ,if detail is not present insert NULL value. The attributes needed are : "merchant_name", "merchant_address", "merchant_phone", "merchant_website", "merchant_tax_reg_no", "merchant_company_reg_no", "region", "mall", "country", "receipt_no", "date", "time", "items with their corresponding prices" (an array of objects), "amount", "category", "description", "flags", "qty", "remarks", "tags", "currency","total", "subtotal", "tax", "service_charge", "payment_method", "payment_details"`;
 
     const imageParts = [

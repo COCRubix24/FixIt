@@ -12,7 +12,7 @@ export const createcontact = async (req, res, next) => {
   }
 };
 
-export const getcontact = async (req, res, next) => {
+export const getcontact = async (_, res, next) => {
   try {
     const a = await contact.find();
     res.status(StatusCodes.OK).json(a);

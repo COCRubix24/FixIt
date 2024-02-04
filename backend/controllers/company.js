@@ -2,13 +2,11 @@ import Company from "../models/Company.js";
 import { StatusCodes } from "http-status-codes";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import dotenv from "dotenv";
 import { createError } from "../utils/error.js";
-import Complain from "../models/Complain.js";
 
 export const registerCompany = async (req, res, next) => {
   try {
-    const { companyName, email, password, departments } = req.body;
+    const { email } = req.body;
 
     const existingUser = await Company.findOne({ email });
     if (existingUser) {
@@ -72,10 +70,11 @@ export const loginCompany = async (req, res, next) => {
   }
 };
 
-export const getCompanyStatus = async (req, res) => {
+export const getCompanyStatus = async (req, _) => {
   const { email } = req.body;
   try {
     const company = await Company.find({ email: email });
+    return res.status(StatusCodes.OK).json(company);
   } catch (error) {
     console.error();
   }
@@ -106,7 +105,7 @@ export const companyVerification = (req, res, next) => {
   }
 };
 
-export const logout = async (req, res) => {
+export const logout = async (_, res) => {
   try {
     res.cookie("access_token_company", " ", { expires: new Date(0) });
     res.status(StatusCodes.OK).json({ message: "Logout successful" });
