@@ -4,7 +4,6 @@ const ComplainSchema = new mongoose.Schema(
   {
     companyName: {
       type: String,
-      // unique: true,
       required: true,
     },
     companyId: {
@@ -14,7 +13,6 @@ const ComplainSchema = new mongoose.Schema(
     },
     email: {
       type: String,
-      // unique: true,
     },
     name: {
       type: String,

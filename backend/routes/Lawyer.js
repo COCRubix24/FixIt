@@ -8,13 +8,11 @@ import {
 import multer from "multer";
 
 const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    // Specify the destination directory where files will be stored
-    cb(null, "uploads/"); // Change 'uploads/' to your desired directory
+  destination: function (_, _, cb) {
+    cb(null, "uploads/");
   },
-  filename: function (req, file, cb) {
-    // Define how the file should be named
-    cb(null, file.originalname); // You can customize the file naming logic
+  filename: function (_, file, cb) {
+    cb(null, file.originalname);
   },
 });
 
@@ -22,7 +20,6 @@ const upload = multer({ storage: storage });
 
 const router = express.Router();
 
-//create
 router.post(
   "/",
   upload.fields([
@@ -31,14 +28,8 @@ router.post(
   ]),
   createLawyer,
 );
-
-//delete
 router.delete("/:id", deleteLawyer);
-
-//get
 router.get("/find/:id", getLawyer);
-
-//get all
 router.get("/", getLawyers);
 
 export default router;

@@ -2,10 +2,10 @@ import cloudinary from "../config/cloudinary.js";
 import Complain from "../models/Complain.js";
 import { StatusCodes } from "http-status-codes";
 import Company from "../models/Company.js";
-import sgMail from "@sendgrid/mail";
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-
 import axios from "axios";
+import sgMail from "@sendgrid/mail";
+
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 export const createComplain = async (req, res) => {
   console.log(req.body);
@@ -44,7 +44,6 @@ export const createComplain = async (req, res) => {
     let complainData = null;
 
     if (isAnonymous === true) {
-      // pinataIPFS = "https://ipfs.io/ipfs/" + pinataIPFS;
       complainData = {
         companyName: companyName,
         companyId: company._id,
@@ -75,27 +74,24 @@ export const createComplain = async (req, res) => {
     const flaskApiResponse = await axios.post(
       "http://localhost:5000/classifyDept/",
       {
-        input: description, // Provide the appropriate input data
-        depts: company.departments, // Provide the appropriate departments data
-        pinataIPFS: pinataIPFS, // Assuming you want to include pinataIPFS in the request
+        input: description,
+        depts: company.departments,
+        pinataIPFS: pinataIPFS,
       },
     );
     console.log(flaskApiResponse.data);
 
-    // Extract relevant data from the Flask API response
     const flaskApiData = flaskApiResponse.data.result;
 
-    // Merge the data from Flask API with the complainData
     Object.assign(complainData, {
       department: flaskApiData.deptSelected,
       keywords: flaskApiData.keywords,
     });
 
-    // Create a Complain record
     const complain = await Complain.create(complainData);
     const msg = {
-      to: complain.email, // Change to your recipient
-      from: "moheetshendarkar@gmail.com", // Change to your verified sender
+      to: complain.email,
+      from: "moheetshendarkar@gmail.com",
       subject: "Your recent Case Details",
       html: `<html><h1>Company - ${complain.companyName}</h1><h5>Company ID - ${complain.companyId}</h5><h2>${complain.name}</h2><p>To view the receipt copy and paste - https://ipfs.io/ipfs/${complain.pinataIPFS}</p></html>`,
     };
@@ -189,13 +185,6 @@ export const dashboardB = async (req, res) => {
       status: { $in: ["Submitted complain", "In progress"] },
     });
 
-    // Calculate average resolution time
-    // const resolutionTimes = await Complain.find({
-    //   companyId,
-    //   status: 'resolved',
-    //   resolutionTime: { $exists: true, $ne: null },
-    // }).select('resolutionTime');
-
     const resolvedComplaints = await Complain.find({
       companyId,
       status: "resolved",
@@ -216,7 +205,6 @@ export const dashboardB = async (req, res) => {
         0,
       ) / resolutionTimes.length;
 
-    // Department-wise data
     const departmentWiseData = await Complain.aggregate([
       {
         $match: {
@@ -262,7 +250,6 @@ export const getComplaintsByDepartment = async (req, res) => {
   const { companyId, department } = req.body;
 
   try {
-    // Fetch complaints based on companyId and department
     const complaints = await Complain.find({
       companyId,
       department,

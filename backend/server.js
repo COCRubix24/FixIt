@@ -46,11 +46,9 @@ app.get("/", (req, res) => {
   res.send("Hello");
 });
 
-//middlewares
 app.use(express.json());
 app.use(cookieParser());
 
-// routes
 app.use("/api/auth", authRoute);
 app.use("/api/users", usersRoute);
 app.use("/api/lawyer", lawyerRoute);
