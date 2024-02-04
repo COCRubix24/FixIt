@@ -8,7 +8,7 @@ import {
   updateSingleComplain,
   getAllCompanyComplain,
   dashboardB,
-  getComplaintsByDepartment
+  getComplaintsByDepartment,
 } from "../controllers/complain.js";
 
 router.post("/createComplain", createComplain);

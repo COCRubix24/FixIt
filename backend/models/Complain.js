@@ -54,9 +54,9 @@ const ComplainSchema = new mongoose.Schema(
     },
     keywords: {
       type: String,
-    }
+    },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 export default mongoose.model("Complain", ComplainSchema);
