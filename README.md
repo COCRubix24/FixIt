@@ -9,8 +9,7 @@ DEMO
 ---
 ![WhatsApp Image 2024-03-19 at 12 17 28 AM (1)](https://github.com/COCRubix24/Rubix24_COC/assets/110057532/451be756-7430-4c8d-8a80-754027f8b7ca)
 ---
-![WhatsApp Image 2024-03-19 at 12 17 29 AM](https://github.com/COCRubix24/Rubix24_COC/assets/110057532/d563baf3-1713-49ef-8261-e2650eb77c76)
----
+
 ![WhatsApp Image 2024-03-19 at 12 17 29 AM (1)](https://github.com/COCRubix24/Rubix24_COC/assets/110057532/52f73937-5b91-429f-92ee-57f0598a8104)
 ---
 ![WhatsApp Image 2024-03-19 at 12 17 29 AM (2)](https://github.com/COCRubix24/Rubix24_COC/assets/110057532/fb1f82e3-2e0e-41fb-a2ba-4264e5dec245)
